@@ -1,0 +1,28 @@
+<section class="artistpage">
+  <div class="search">
+  	<table class="table">
+	<tr>
+		<th>Building
+		</th>
+		<th>Address
+		</th>
+		<th colspan="2">
+			Actions
+		</th>
+		
+	</tr>
+	<tr ng-repeat="location in locationData">
+		<td> {{location.buildingName}}
+		</td>
+		<td>  {{location.address}}
+		</td>
+		<td>
+		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(location.locId)"/>
+		</td>
+		<td>
+		<input type="button" value="edit" class="btn btn-table" ng-click="addChild(location.locId)"/>
+		</td>		
+	</tr>
+</table>
+  </div>
+</section>
