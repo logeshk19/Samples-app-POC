@@ -188,13 +188,14 @@ a.small {
     background: #09576D;
 }
 
-.search label {
+/*.search label {
   display: none;
-}
+}*/
 
 .search input {
   font-family: 'Droid Sans', sans-serif;
   width: 100%;
+  min-width: 40px;
   /*padding: 10px 0 10px 15px;*/
   padding: 0px;
   font-size: 1rem;
@@ -341,8 +342,9 @@ table {
 }
 
 
- tr, td {
+ th, td {
   margin: 0;
+  min-width: 100px;
   padding: 5px 15px;
   border-bottom: 1px dotted black;
   opacity: .9;
@@ -360,5 +362,9 @@ th {
 
 .btn-table{
   padding: 0px;
+}
+
+.alignCenter{
+  text-align: center;
 }
 

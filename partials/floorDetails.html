@@ -1,0 +1,35 @@
+<section class="artistpage">
+  <div class="search">
+  	<h1>Floors</h1>
+  	<table class="table">
+	<tr>
+		<th>Floor
+		</th>
+		<th>Address
+		</th>
+		<th class="alignCenter" colspan="2">
+			Actions
+		</th>
+		
+	</tr>
+	<tr ng-repeat="location in locationData">
+		 <a href="#/floors/{{location.locId}}">
+			<td class="locationName"> 
+				<div ng-hide="location.isEditing"> {{location.buildingName}} </div>
+				<input ng-show="location.isEditing" ng-model="location.buildingName"/> 
+			</td>
+			<td> 
+				<div ng-hide="location.isEditing">  {{location.address}} </div>
+				<input ng-show="location.isEditing" ng-model="location.address"/> 
+			</td>
+			<td>
+			<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(location.locId)"/>
+			</td>
+			<td>
+			<input type="button" value="{{location.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editLocation($index)"/>
+			</td>
+		 </a>		
+	</tr>
+</table>
+  </div>
+</section>

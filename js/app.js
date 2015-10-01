@@ -18,6 +18,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/locationDetails.html',
     controller: 'LocationController'
   }).
+  when('/floors/:locId', {
+    templateUrl: 'partials/floorDetails.html',
+    controller: 'FloorController'
+  }).
   otherwise({
     redirectTo: '/main'
   });

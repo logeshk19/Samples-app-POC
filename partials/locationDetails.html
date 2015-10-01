@@ -1,28 +1,38 @@
 <section class="artistpage">
   <div class="search">
+  	<h1>Buildings</h1>
   	<table class="table">
 	<tr>
 		<th>Building
 		</th>
 		<th>Address
 		</th>
-		<th colspan="2">
+		<th class="alignCenter" colspan="2">
 			Actions
 		</th>
 		
 	</tr>
-	<tr ng-repeat="location in locationData">
-		<td> {{location.buildingName}}
+	
+	<tr ng-click = "clickBuilding(location)" ng-repeat="location in locationData">
+		
+		<td class="locationName"> 
+			<div ng-hide="location.isEditing"> {{location.buildingName}} </div>
+			<input ng-show="location.isEditing" ng-model="location.buildingName"/> 
 		</td>
-		<td>  {{location.address}}
+		<td> 
+			<div ng-hide="location.isEditing">  {{location.address}} </div>
+			<input ng-show="location.isEditing" ng-model="location.address"/> 
 		</td>
 		<td>
 		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(location.locId)"/>
 		</td>
 		<td>
-		<input type="button" value="edit" class="btn btn-table" ng-click="addChild(location.locId)"/>
-		</td>		
+		<input type="button" value="{{location.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editLocation($index)"/>
+		</td>
+			
 	</tr>
+
+
 </table>
   </div>
 </section>
