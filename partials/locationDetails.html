@@ -24,10 +24,10 @@
 			<input ng-show="location.isEditing" ng-model="location.address"/> 
 		</td>
 		<td>
-		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(location.locId)"/>
+		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(location.locId); $event.stopPropagation();"/>
 		</td>
 		<td>
-		<input type="button" value="{{location.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editLocation($index)"/>
+		<input type="button" value="{{location.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editLocation($index); $event.stopPropagation();"/>
 		</td>
 			
 	</tr>
