@@ -102,3 +102,4 @@ $scope.floorData = [{
     'isEditing' : false
   }];
 }]);
+/*test*/
