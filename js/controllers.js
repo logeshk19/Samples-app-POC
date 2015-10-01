@@ -58,48 +58,16 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
 }]);
 
 
-pocControllers.controller('FloorController', ['$scope', '$http', function($scope, $http){
-$scope.floorData = [{
-    'floorName' : 'CC-512',
-    'address' : 'US',
-    'locId' : '0',
-    'isEditing' : false
-  },
-  {
-    'buildingName' : 'Target Plaza 3(TP3)',
-    'address' : 'US',
-    'locId' : '1',
-    'isEditing' : false
-  },
-  {
-    'buildingName' : 'Target Plaza North(TPN)',
-    'address' : 'US',
-    'locId' : '2',
-    'isEditing' : false
-  },
-  {
-    'buildingName' : 'Target Plaza South(TPS)',
-    'address' : 'US',
-    'locId' : '3',
-    'isEditing' : false
-  },
-  {
-    'buildingName' : 'N.E Target Photo Studio',
-    'address' : 'US',
-    'locId' : '4',
-    'isEditing' : false
-  },
-  {
-    'buildingName' : '#6 Shanghai',
-    'address' : 'China',
-    'locId' : '5',
-    'isEditing' : false
-  },
-  {
-    'buildingName' : 'Fox Studio',
-    'address' : 'US',
-    'locId' : '6',
-    'isEditing' : false
-  }];
+pocControllers.controller('FloorController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+  $scope.locationId = $routeParams.locId;
+ $http.get('js/pocData.json').success(function(data) {
+    $scope.buildingInfo = data.locationData.filter(function(obj){
+      return obj.locId == $scope.locationId;
+    });
+
+    $scope.floorDetails = data.floorData.filter(function(obj){
+      return obj.locId == $scope.locationId;
+    });
+  }); 
 }]);
-/*test*/
+

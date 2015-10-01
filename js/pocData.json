@@ -42,6 +42,17 @@
     "isEditing" : false
   }
 
+],
+
+"floorData" : [
+{
+    "floorName" : "CC-512",
+    "address" : "US",
+    "floorId" : "0",
+    "locId" : "0",
+    "isEditing" : false
+  }
+
 ]
 }
 
