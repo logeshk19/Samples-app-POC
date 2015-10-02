@@ -82,13 +82,67 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$
     return obj.locId == $scope.locationId;
   });
 
-  $scope.floorDetails = $scope.pocData.floorData.filter(function(obj){
+  $scope.floors   = $scope.pocData.floorData.filter(function(obj){
     return obj.locId == $scope.locationId;
   });
 
   $scope.clickFloor = function(floor){
      $location.path("rooms/" + floor.floorId);
   }
+
+  /*Function to add a record*/
+  $scope.addFloor = function(){
+  
+    var checkRequired = true;
+    var ranNum = 0;
+    while(checkRequired){
+     ranNum = Math.floor((Math.random() * 100) + 1);
+
+      var res = $scope.pocData.floorData.filter(function(obj){
+      return obj.floorId == ranNum;
+      }); 
+
+      checkRequired = res.length == 0 ? false : true;
+    }
+
+      $scope.pocData.floorData.unshift({"floorName" : "",
+        "address" : "",
+        "floorId" : ranNum,
+        "locId" : $scope.locationId,
+        "isEditing" : true
+      });
+
+      $scope.floors = $scope.pocData.floorData.filter(function(obj){
+        return obj.locId == $scope.locationId;
+      }); 
+    }
+
+    $scope.editFloor = function(floorId){
+      for(var i=0; i < $scope.pocData.floorData.length; i++){
+        if($scope.pocData.floorData[i].floorId == floorId){
+          $scope.pocData.floorData[i].isEditing =  !$scope.pocData.floorData[i].isEditing; 
+        }
+      }
+      
+      $scope.floors = $scope.pocData.floorData.filter(function(obj){
+        return obj.locId == $scope.locationId;
+      });  
+    }
+
+  $scope.removeRow = function(floorId){
+      var index = -1;   
+    for( var i = 0; i < $scope.pocData.floorData.length; i++ ) {
+      if( $scope.pocData.floorData[i].floorId === floorId ) {
+        index = i;
+        break;
+      }
+    }
+    $scope.pocData.floorData.splice( index, 1 ); 
+
+    $scope.floors = $scope.pocData.floorData.filter(function(obj){
+        return obj.locId == $scope.locationId;
+      });  
+  };
 
 $scope.returnToBuildings = function () {
   $location.path("/main");
