@@ -82,10 +82,6 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$
     return obj.locId == $scope.locationId;
   });
 
-  $scope.floors   = $scope.pocData.floorData.filter(function(obj){
-    return obj.locId == $scope.locationId;
-  });
-
   $scope.clickFloor = function(floor){
      $location.path("rooms/" + floor.floorId);
   }
@@ -111,10 +107,6 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$
         "locId" : $scope.locationId,
         "isEditing" : true
       });
-
-      $scope.floors = $scope.pocData.floorData.filter(function(obj){
-        return obj.locId == $scope.locationId;
-      }); 
     }
 
     $scope.editFloor = function(floorId){
@@ -122,11 +114,7 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$
         if($scope.pocData.floorData[i].floorId == floorId){
           $scope.pocData.floorData[i].isEditing =  !$scope.pocData.floorData[i].isEditing; 
         }
-      }
-      
-      $scope.floors = $scope.pocData.floorData.filter(function(obj){
-        return obj.locId == $scope.locationId;
-      });  
+      }  
     }
 
   $scope.removeRow = function(floorId){
@@ -137,11 +125,7 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$
         break;
       }
     }
-    $scope.pocData.floorData.splice( index, 1 ); 
-
-    $scope.floors = $scope.pocData.floorData.filter(function(obj){
-        return obj.locId == $scope.locationId;
-      });  
+    $scope.pocData.floorData.splice( index, 1 );   
   };
 
 $scope.returnToBuildings = function () {

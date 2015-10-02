@@ -14,20 +14,20 @@
 		</th>
 		
 	</tr>
-	<tr ng-click="clickFloor(floor)"  ng-repeat="floor in floors">
+	<tr ng-click="clickFloor(floor)"  ng-repeat="floor in pocData.floorData" ng-if="floor.locId == locationId">
 		<td class="locationName"> 
 			<div ng-hide="floor.isEditing"> {{floor.floorName}} </div>
-			<input ng-show="floor.isEditing" ng-model="floor.floorName"/> 
+			<input ng-show="floor.isEditing" ng-click="$event.stopPropagation();"  ng-model="floor.floorName"/> 
 		</td>
 		<td> 
 			<div ng-hide="floor.isEditing">  {{floor.address}} </div>
-			<input ng-show="floor.isEditing" ng-model="floor.address"/> 
+			<input ng-show="floor.isEditing" ng-click="$event.stopPropagation();" ng-model="floor.address"/> 
 		</td>
 		<td>
-		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(floor.floorId)"/>
+		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(floor.floorId); $event.stopPropagation();"/>
 		</td>
 		<td>
-		<input type="button" value="{{floor.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editFloor(floor.floorId)"/>
+		<input type="button" value="{{floor.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editFloor(floor.floorId); $event.stopPropagation();"/>
 		</td>
 	</tr>
 </table>
