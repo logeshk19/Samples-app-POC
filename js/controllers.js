@@ -90,6 +90,9 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$
      $location.path("rooms/" + floor.floorId);
   }
 
+$scope.returnToBuildings = function () {
+  $location.path("/main");
+};
 }]);
 
 /****************************************** FLOORS CONTROLLER TILL HERE ****************************************************/
