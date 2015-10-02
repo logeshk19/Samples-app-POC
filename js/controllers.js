@@ -14,6 +14,7 @@ pocControllers.factory("pocData", function(){
 /******************************************* LOCATION CONTROLLER *************************************************************/
 pocControllers.controller('LocationController', ['$scope', '$http', '$location', 'pocData', function($scope, $http, $location, pocData ){
   $scope.isEditing = false;
+  $scope.addText = "Add building";
   $scope.pocData = pocData;
 
   /*Checking if the object is empty i.e. is this a first time load*/
@@ -21,6 +22,7 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
      $http.get('js/pocData.json').success(function(data) { 
       $scope.pocData.locationData = data.locationData;
       $scope.pocData.floorData = data.floorData;
+      $scope.pocData.roomData = data.roomData;
     });
    }
 
@@ -63,8 +65,7 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
       $scope.pocData.locationData.unshift({"buildingName" :  "",
       "address" : "",
        "locId"  : ranNum,
-       "isEditing" : true
-     });
+       "isEditing" : true});
     };
 }]);
 
@@ -73,73 +74,41 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
 
 
 /******************************************* FLOORS CONTROLLER *************************************************************/
-pocControllers.controller('FloorController', ['$scope', '$http', '$routeParams', 'pocData', function($scope, $http, $routeParams, pocData){
+pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$routeParams', 'pocData', function($scope, $http, $location,  $routeParams, pocData){
+  $scope.addText = "Add Floor";
   $scope.locationId = $routeParams.locId;
   $scope.pocData = pocData;
   $scope.buildingInfo = $scope.pocData.locationData.filter(function(obj){
     return obj.locId == $scope.locationId;
   });
 
-  $scope.floors = $scope.pocData.floorData.filter(function(obj){
+  $scope.floorDetails = $scope.pocData.floorData.filter(function(obj){
     return obj.locId == $scope.locationId;
   });
 
-  /*Function to add a record*/
-  $scope.addFloor = function(){
-  
-    var checkRequired = true;
-    var ranNum = 0;
-    while(checkRequired){
-     ranNum = Math.floor((Math.random() * 100) + 1);
+  $scope.clickFloor = function(floor){
+     $location.path("rooms/" + floor.floorId);
+  }
 
-      var res = $scope.pocData.floorData.filter(function(obj){
-      return obj.floorId == ranNum;
-      }); 
-
-      checkRequired = res.length == 0 ? false : true;
-    }
-
-      $scope.pocData.floorData.unshift({"floorName" : "",
-        "address" : "",
-        "floorId" : ranNum,
-        "locId" : $scope.locationId,
-        "isEditing" : true
-      });
-
-      $scope.floors = $scope.pocData.floorData.filter(function(obj){
-        return obj.locId == $scope.locationId;
-      }); 
-    }
-
-    $scope.editFloor = function(floorId){
-      for(var i=0; i < $scope.pocData.floorData.length; i++){
-        if($scope.pocData.floorData[i].floorId == floorId){
-          $scope.pocData.floorData[i].isEditing =  !$scope.pocData.floorData[i].isEditing; 
-        }
-      }
-      
-      $scope.floors = $scope.pocData.floorData.filter(function(obj){
-        return obj.locId == $scope.locationId;
-      });  
-    }
-
-  $scope.removeRow = function(floorId){
-      var index = -1;   
-    for( var i = 0; i < $scope.pocData.floorData.length; i++ ) {
-      if( $scope.pocData.floorData[i].floorId === floorId ) {
-        index = i;
-        break;
-      }
-    }
-    $scope.pocData.floorData.splice( index, 1 ); 
-
-    $scope.floors = $scope.pocData.floorData.filter(function(obj){
-        return obj.locId == $scope.locationId;
-      });  
-  };
-
-  
+$scope.returnToBuildings = function () {
+  $location.path("/main");
+};
 }]);
 
 /****************************************** FLOORS CONTROLLER TILL HERE ****************************************************/
 
+/******************************************* ROOMS CONTROLLER *************************************************************/
+pocControllers.controller('RoomController', ['$scope', '$http', '$routeParams', 'pocData', function($scope, $http, $routeParams, pocData){
+  $scope.addText = "Add room";
+  $scope.floorId = $routeParams.floorId;
+  $scope.pocData = pocData;
+  $scope.floorInfo = $scope.pocData.floorData.filter(function(obj){
+    return obj.floorId == $scope.floorId;
+  });
+
+  $scope.roomDetails = $scope.pocData.roomData.filter(function(obj){
+    return obj.floorId == $scope.floorId;
+  });
+}]);
+
+/****************************************** ROOMS CONTROLLER TILL HERE ****************************************************/
