@@ -14,7 +14,7 @@
 		</th>
 		
 	</tr>
-	<tr ng-repeat="floor in floors">
+	<tr ng-click="clickFloor(floor)"  ng-repeat="floor in floors">
 		<td class="locationName"> 
 			<div ng-hide="floor.isEditing"> {{floor.floorName}} </div>
 			<input ng-show="floor.isEditing" ng-model="floor.floorName"/> 
