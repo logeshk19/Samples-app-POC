@@ -22,6 +22,7 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
      $http.get('js/pocData.json').success(function(data) { 
       $scope.pocData.locationData = data.locationData;
       $scope.pocData.floorData = data.floorData;
+      $scope.pocData.roomData = data.roomData;
     });
    }
 
@@ -73,7 +74,8 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
 
 
 /******************************************* FLOORS CONTROLLER *************************************************************/
-pocControllers.controller('FloorController', ['$scope', '$http', '$routeParams', 'pocData', function($scope, $http, $routeParams, pocData){
+pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$routeParams', 'pocData', function($scope, $http, $location,  $routeParams, pocData){
+  $scope.addText = "Add Floor";
   $scope.locationId = $routeParams.locId;
   $scope.pocData = pocData;
   $scope.buildingInfo = $scope.pocData.locationData.filter(function(obj){
@@ -83,7 +85,27 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$routeParams',
   $scope.floorDetails = $scope.pocData.floorData.filter(function(obj){
     return obj.locId == $scope.locationId;
   });
+
+  $scope.clickFloor = function(floor){
+     $location.path("rooms/" + floor.floorId);
+  }
+
 }]);
 
 /****************************************** FLOORS CONTROLLER TILL HERE ****************************************************/
 
+/******************************************* ROOMS CONTROLLER *************************************************************/
+pocControllers.controller('RoomController', ['$scope', '$http', '$routeParams', 'pocData', function($scope, $http, $routeParams, pocData){
+  $scope.addText = "Add room";
+  $scope.floorId = $routeParams.floorId;
+  $scope.pocData = pocData;
+  $scope.floorInfo = $scope.pocData.floorData.filter(function(obj){
+    return obj.floorId == $scope.floorId;
+  });
+
+  $scope.roomDetails = $scope.pocData.roomData.filter(function(obj){
+    return obj.floorId == $scope.floorId;
+  });
+}]);
+
+/****************************************** ROOMS CONTROLLER TILL HERE ****************************************************/

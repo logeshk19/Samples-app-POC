@@ -13,8 +13,8 @@
 		</th>
 		
 	</tr>
-	<tr ng-repeat="floor in floorDetails">
-		<td class="locationName"> 
+	<tr ng-click="clickFloor(floor)" ng-repeat="floor in floorDetails">
+		<td class="floorName"> 
 			<div ng-hide="floor.isEditing"> {{floor.floorName}} </div>
 			<input ng-show="floor.isEditing" ng-model="floor.floorName"/> 
 		</td>

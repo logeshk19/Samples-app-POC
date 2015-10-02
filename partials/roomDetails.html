@@ -1,0 +1,35 @@
+<section>
+  <div class="search">
+  	<h1>Rooms</h1>
+  	<label>{{pocData.roomsData.roomNum}}</label>
+  	<label>{{floorInfo[0].floorName}}</label>
+  	<table class="table">
+	<tr>
+		<th>Room
+		</th>
+		<th>Address
+		</th>
+		<th class="alignCenter" colspan="2">
+			Actions
+		</th>
+		
+	</tr>
+	<tr ng-repeat="room in roomDetails">
+		<td class="roomName"> 
+			<div ng-hide="room.isEditing"> {{room.roomName}} </div>
+			<input ng-show="room.isEditing" ng-model="room.roomName"/> 
+		</td>
+		<td> 
+			<div ng-hide="room.isEditing">  {{room.address}} </div>
+			<input ng-show="room.isEditing" ng-model="room.address"/> 
+		</td>
+		<td>
+		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(room.roomNum)"/>
+		</td>
+		<td>
+		<input type="button" value="{{room.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editRoom($index)"/>
+		</td>
+	</tr>
+	</table>
+	</div>
+	</section>
