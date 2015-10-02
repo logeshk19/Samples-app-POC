@@ -1,8 +1,9 @@
 var myApp = angular.module('myApp', [
   'ngRoute',
-  'artistControllers',
   'pocControllers'
 ]);
+
+
 
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
@@ -26,3 +27,4 @@ myApp.config(['$routeProvider', function($routeProvider) {
     redirectTo: '/main'
   });
 }]);
+

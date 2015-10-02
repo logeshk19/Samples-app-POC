@@ -82,7 +82,7 @@ html {
   height: auto;
 }
 
-body  {
+body, button {
   font-family: Merriweather, serif;
   font-size: 1rem;
   line-height: 160%;
@@ -368,3 +368,6 @@ th {
   text-align: center;
 }
 
+.h-marginBottom {
+  margin-bottom: 10px;
+}

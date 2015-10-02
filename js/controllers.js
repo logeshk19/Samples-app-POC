@@ -1,73 +1,89 @@
-var artistControllers = angular.module('artistControllers', ['ngAnimate']);
 var pocControllers = angular.module('pocControllers', []);
 
-artistControllers.controller('ListController', ['$scope', '$http', function($scope, $http) {
-  $http.get('js/data.json').success(function(data) {
-    $scope.artists = data;
-    $scope.artistOrder = 'name';
-  });
-}]);
 
-artistControllers.controller('DetailsController', ['$scope', '$http','$routeParams', function($scope, $http, $routeParams) {
-  $http.get('js/data.json').success(function(data) {
-    $scope.artists = data;
-    $scope.whichItem = $routeParams.itemId;
+/******************************************* FACTORY ***********************************************************************/
 
-    if ($routeParams.itemId > 0) {
-      $scope.prevItem = Number($routeParams.itemId)-1;
-    } else {
-      $scope.prevItem = $scope.artists.length-1;
-    }
+pocControllers.factory("pocData", function(){
+  return {};
+});
 
-    if ($routeParams.itemId < $scope.artists.length-1) {
-      $scope.nextItem = Number($routeParams.itemId)+1;
-    } else {
-      $scope.nextItem = 0;
-    }
-
-  });
-}]);
+/****************************************** FACTORY TILL HERE *************************************************************/
 
 
-pocControllers.controller('LocationController', ['$scope', '$http', '$location', function($scope, $http, $location ){
+
+/******************************************* LOCATION CONTROLLER *************************************************************/
+pocControllers.controller('LocationController', ['$scope', '$http', '$location', 'pocData', function($scope, $http, $location, pocData ){
   $scope.isEditing = false;
-   $http.get('js/pocData.json').success(function(data) {
-    $scope.locationData = data.locationData;
-  });
-  
+  $scope.addText = "Add building";
+  $scope.pocData = pocData;
+
+  /*Checking if the object is empty i.e. is this a first time load*/
+ if(Object.keys(pocData).length == 0) {
+     $http.get('js/pocData.json').success(function(data) { 
+      $scope.pocData.locationData = data.locationData;
+      $scope.pocData.floorData = data.floorData;
+    });
+   }
 
   $scope.removeRow = function(locId){
       var index = -1;   
-    for( var i = 0; i < $scope.locationData.length; i++ ) {
-      if( $scope.locationData[i].locId === locId ) {
+    for( var i = 0; i < $scope.pocData.locationData.length; i++ ) {
+      if( $scope.pocData.locationData[i].locId === locId ) {
         index = i;
         break;
       }
     }
-    $scope.locationData.splice( index, 1 );  
+    $scope.pocData.locationData.splice( index, 1 );  
   };
 
   $scope.editLocation = function(e){
     $scope.editText = $scope.editText == "edit" ? "done" : "edit";
-    $scope.locationData[e].isEditing =  !$scope.locationData[e].isEditing;  
+    $scope.pocData.locationData[e].isEditing =  !$scope.pocData.locationData[e].isEditing;  
   }
 
   $scope.clickBuilding = function(location){
-    $location.path("floors/" + location.locId);
+     $location.path("floors/" + location.locId);
   }
+
+
+/*Function to add a record*/
+  $scope.addBuilding = function(){
+  
+    var checkRequired = true;
+    var ranNum = 0;
+    while(checkRequired){
+     ranNum = Math.floor((Math.random() * 100) + 1);
+
+      var res = $scope.pocData.locationData.filter(function(obj){
+      return obj.locId == ranNum;
+      }); 
+
+      checkRequired = res.length == 0 ? false : true;
+    }
+
+      $scope.pocData.locationData.unshift({"buildingName" :  "",
+      "address" : "",
+       "locId"  : ranNum,
+       "isEditing" : true});
+    };
 }]);
 
+/****************************************** LOCATION CONTROLLER TILL HERE **************************************************/
 
-pocControllers.controller('FloorController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+
+
+/******************************************* FLOORS CONTROLLER *************************************************************/
+pocControllers.controller('FloorController', ['$scope', '$http', '$routeParams', 'pocData', function($scope, $http, $routeParams, pocData){
   $scope.locationId = $routeParams.locId;
- $http.get('js/pocData.json').success(function(data) {
-    $scope.buildingInfo = data.locationData.filter(function(obj){
-      return obj.locId == $scope.locationId;
-    });
+  $scope.pocData = pocData;
+  $scope.buildingInfo = $scope.pocData.locationData.filter(function(obj){
+    return obj.locId == $scope.locationId;
+  });
 
-    $scope.floorDetails = data.floorData.filter(function(obj){
-      return obj.locId == $scope.locationId;
-    });
-  }); 
+  $scope.floorDetails = $scope.pocData.floorData.filter(function(obj){
+    return obj.locId == $scope.locationId;
+  });
 }]);
+
+/****************************************** FLOORS CONTROLLER TILL HERE ****************************************************/
 
