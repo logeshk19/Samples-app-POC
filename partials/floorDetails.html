@@ -2,6 +2,7 @@
   <div class="search">
   	<h1>Floors</h1>
   	<label>{{buildingInfo[0].buildingName}}</label>
+  	<button class="btn h-marginBottom h-blockButton" ng-click="addFloor(); $event.stopPropagation();">Add floor</button>
   	<table class="table">
 	<tr>
 		<th>Floor
@@ -13,7 +14,7 @@
 		</th>
 		
 	</tr>
-	<tr ng-repeat="floor in floorDetails">
+	<tr ng-repeat="floor in floors">
 		<td class="locationName"> 
 			<div ng-hide="floor.isEditing"> {{floor.floorName}} </div>
 			<input ng-show="floor.isEditing" ng-model="floor.floorName"/> 
@@ -26,7 +27,7 @@
 		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(floor.floorId)"/>
 		</td>
 		<td>
-		<input type="button" value="{{floor.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editLocation($index)"/>
+		<input type="button" value="{{floor.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editFloor(floor.floorId)"/>
 		</td>
 	</tr>
 </table>

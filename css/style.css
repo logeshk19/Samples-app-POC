@@ -371,3 +371,8 @@ th {
 .h-marginBottom {
   margin-bottom: 10px;
 }
+
+.h-blockButton{
+    display: block;
+    margin: 5px 0px 10px;
+}

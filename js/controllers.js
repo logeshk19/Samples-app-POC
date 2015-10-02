@@ -14,7 +14,6 @@ pocControllers.factory("pocData", function(){
 /******************************************* LOCATION CONTROLLER *************************************************************/
 pocControllers.controller('LocationController', ['$scope', '$http', '$location', 'pocData', function($scope, $http, $location, pocData ){
   $scope.isEditing = false;
-  $scope.addText = "Add building";
   $scope.pocData = pocData;
 
   /*Checking if the object is empty i.e. is this a first time load*/
@@ -64,7 +63,8 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
       $scope.pocData.locationData.unshift({"buildingName" :  "",
       "address" : "",
        "locId"  : ranNum,
-       "isEditing" : true});
+       "isEditing" : true
+     });
     };
 }]);
 
@@ -80,9 +80,65 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$routeParams',
     return obj.locId == $scope.locationId;
   });
 
-  $scope.floorDetails = $scope.pocData.floorData.filter(function(obj){
+  $scope.floors = $scope.pocData.floorData.filter(function(obj){
     return obj.locId == $scope.locationId;
   });
+
+  /*Function to add a record*/
+  $scope.addFloor = function(){
+  
+    var checkRequired = true;
+    var ranNum = 0;
+    while(checkRequired){
+     ranNum = Math.floor((Math.random() * 100) + 1);
+
+      var res = $scope.pocData.floorData.filter(function(obj){
+      return obj.floorId == ranNum;
+      }); 
+
+      checkRequired = res.length == 0 ? false : true;
+    }
+
+      $scope.pocData.floorData.unshift({"floorName" : "",
+        "address" : "",
+        "floorId" : ranNum,
+        "locId" : $scope.locationId,
+        "isEditing" : true
+      });
+
+      $scope.floors = $scope.pocData.floorData.filter(function(obj){
+        return obj.locId == $scope.locationId;
+      }); 
+    }
+
+    $scope.editFloor = function(floorId){
+      for(var i=0; i < $scope.pocData.floorData.length; i++){
+        if($scope.pocData.floorData[i].floorId == floorId){
+          $scope.pocData.floorData[i].isEditing =  !$scope.pocData.floorData[i].isEditing; 
+        }
+      }
+      
+      $scope.floors = $scope.pocData.floorData.filter(function(obj){
+        return obj.locId == $scope.locationId;
+      });  
+    }
+
+  $scope.removeRow = function(floorId){
+      var index = -1;   
+    for( var i = 0; i < $scope.pocData.floorData.length; i++ ) {
+      if( $scope.pocData.floorData[i].floorId === floorId ) {
+        index = i;
+        break;
+      }
+    }
+    $scope.pocData.floorData.splice( index, 1 ); 
+
+    $scope.floors = $scope.pocData.floorData.filter(function(obj){
+        return obj.locId == $scope.locationId;
+      });  
+  };
+
+  
 }]);
 
 /****************************************** FLOORS CONTROLLER TILL HERE ****************************************************/
