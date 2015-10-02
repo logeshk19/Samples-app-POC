@@ -46,13 +46,32 @@
 
 "floorData" : [
 {
-    "floorName" : "CC-512",
+    "floorName" : "CC-5",
     "address" : "US",
     "floorId" : "0",
     "locId" : "0",
     "isEditing" : false
   }
 
+],
+
+"roomData" : [
+{
+    "floorId" : "0",
+    "roomNum" : "0",
+    "roomName" : "CC-512",
+    "address" : "US",
+    "isEditing" : false
+}
+],
+
+"level4Data" : [
+{
+    "roomNum" : "0",
+    "level4Id" : "0",
+    "level4Name" : "Shelf ABC",
+    "isEditing" : "false"
+}
 ]
 }
 
