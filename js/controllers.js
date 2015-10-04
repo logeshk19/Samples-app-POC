@@ -191,7 +191,7 @@ pocControllers.controller('RoomController', ['$scope', '$location', '$routeParam
   };
 
   $scope.returnToFloors = function () {
-  $location.path("/floors/" + $scope.floorId);
+  $location.path("/floors/" + $scope.floorInfo[0].buildingId);
 };
 
 }]);
@@ -253,7 +253,7 @@ pocControllers.controller('LevelFourController', ['$scope', '$location', '$route
   };
 
   $scope.returnToRooms = function () {
-  $location.path("/rooms/" + $scope.roomId);
+  $location.path("/rooms/" + $scope.roomInfo[0].floorId);
 };
 
 }]);
@@ -315,7 +315,7 @@ pocControllers.controller('LevelFiveController', ['$scope', '$location', '$route
   };
 
   $scope.returnToLevelFour = function () {
-  $location.path("/levelFour/" + $scope.levelFourId);
+  $location.path("/levelFour/" + $scope.levelFourInfo[0].roomId);
 };
 
 }]);
