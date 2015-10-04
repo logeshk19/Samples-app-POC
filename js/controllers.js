@@ -23,6 +23,8 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
       $scope.pocData.locationData = data.locationData;
       $scope.pocData.floorData = data.floorData;
       $scope.pocData.roomData = data.roomData;
+      $scope.pocData.levelFourData = data.levelFourData;
+      $scope.pocData.levelFiveData = data.levelFiveData;
     });
    }
 
@@ -75,7 +77,6 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
 
 /******************************************* FLOORS CONTROLLER *************************************************************/
 pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$routeParams', 'pocData', function($scope, $http, $location,  $routeParams, pocData){
-  $scope.addText = "Add Floor";
   $scope.locationId = $routeParams.locId;
   $scope.pocData = pocData;
   $scope.buildingInfo = $scope.pocData.locationData.filter(function(obj){
@@ -136,17 +137,187 @@ $scope.returnToBuildings = function () {
 /****************************************** FLOORS CONTROLLER TILL HERE ****************************************************/
 
 /******************************************* ROOMS CONTROLLER *************************************************************/
-pocControllers.controller('RoomController', ['$scope', '$http', '$routeParams', 'pocData', function($scope, $http, $routeParams, pocData){
-  $scope.addText = "Add room";
+pocControllers.controller('RoomController', ['$scope', '$location', '$routeParams', 'pocData', function($scope, $location, $routeParams, pocData){
   $scope.floorId = $routeParams.floorId;
   $scope.pocData = pocData;
   $scope.floorInfo = $scope.pocData.floorData.filter(function(obj){
     return obj.floorId == $scope.floorId;
   });
 
-  $scope.roomDetails = $scope.pocData.roomData.filter(function(obj){
-    return obj.floorId == $scope.floorId;
-  });
+  $scope.clickRoom = function(room){
+     $location.path("levelFour/" + room.roomId);
+  }
+
+/*Function to add a record*/
+  $scope.addRoom = function(){
+  
+    var checkRequired = true;
+    var ranNum = 0;
+    while(checkRequired){
+     ranNum = Math.floor((Math.random() * 100) + 1);
+
+      var res = $scope.pocData.roomData.filter(function(obj){
+      return obj.roomId == ranNum;
+      }); 
+
+      checkRequired = res.length == 0 ? false : true;
+    }
+
+      $scope.pocData.roomData.unshift({"floorId" : $scope.floorId,
+        "roomId" : ranNum,
+        "roomName" : "",
+        "address" : "",
+        "isEditing" : true
+      });
+    }
+
+  $scope.editRoom = function(roomId){
+      for(var i=0; i < $scope.pocData.roomData.length; i++){
+        if($scope.pocData.roomData[i].roomId == roomId){
+          $scope.pocData.roomData[i].isEditing =  !$scope.pocData.roomData[i].isEditing; 
+        }
+      }  
+    }
+
+  $scope.removeRow = function(roomId){
+      var index = -1;   
+    for( var i = 0; i < $scope.pocData.roomData.length; i++ ) {
+      if( $scope.pocData.roomData[i].roomId === roomId ) {
+        index = i;
+        break;
+      }
+    }
+    $scope.pocData.roomData.splice( index, 1 );   
+  };
+
+  $scope.returnToFloors = function () {
+  $location.path("/floors/" + $scope.floorId);
+};
+
 }]);
 
 /****************************************** ROOMS CONTROLLER TILL HERE ****************************************************/
+
+/******************************************* LEVEL FOUR CONTROLLER *************************************************************/
+pocControllers.controller('LevelFourController', ['$scope', '$location', '$routeParams', 'pocData', function($scope, $location, $routeParams, pocData){
+  $scope.roomId = $routeParams.roomId;
+  $scope.pocData = pocData;
+  $scope.roomInfo = $scope.pocData.roomData.filter(function(obj){
+    return obj.roomId == $scope.roomId;
+  });
+
+  $scope.clickItem = function(item){
+     $location.path("levelFive/" + item.levelFourId);
+  }
+
+/*Function to add a record*/
+  $scope.addLevelFour = function(){
+  
+    var checkRequired = true;
+    var ranNum = 0;
+    while(checkRequired){
+     ranNum = Math.floor((Math.random() * 100) + 1);
+
+      var res = $scope.pocData.levelFourData.filter(function(obj){
+      return obj.levelFourId == ranNum;
+      }); 
+
+      checkRequired = res.length == 0 ? false : true;
+    }
+
+      $scope.pocData.levelFourData.unshift({"roomId" :  $scope.roomId,
+        "levelFourId" : ranNum,
+        "levelFourName" : "",
+        "levelFourAddress" : "",
+        "isEditing" : true
+      });
+    }
+
+  $scope.editItem = function(levelFourId){
+      for(var i=0; i < $scope.pocData.levelFourData.length; i++){
+        if($scope.pocData.levelFourData[i].levelFourId == levelFourId){
+          $scope.pocData.levelFourData[i].isEditing =  !$scope.pocData.levelFourData[i].isEditing; 
+        }
+      }  
+    }
+
+  $scope.removeRow = function(levelFourId){
+      var index = -1;   
+    for( var i = 0; i < $scope.pocData.levelFourData.length; i++ ) {
+      if( $scope.pocData.levelFourData[i].levelFourId === levelFourId ) {
+        index = i;
+        break;
+      }
+    }
+    $scope.pocData.levelFourData.splice( index, 1 );   
+  };
+
+  $scope.returnToRooms = function () {
+  $location.path("/rooms/" + $scope.roomId);
+};
+
+}]);
+
+/****************************************** LEVEL FOUR CONTROLLER TILL HERE ***********************************************/
+
+
+
+/******************************************* LEVEL FIVE CONTROLLER *************************************************************/
+pocControllers.controller('LevelFiveController', ['$scope', '$location', '$routeParams', 'pocData', function($scope, $location, $routeParams, pocData){
+  $scope.levelFourId = $routeParams.levelFourId;
+  $scope.pocData = pocData;
+  $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
+    return obj.levelFourId == $scope.levelFourId;
+  });
+
+
+
+/*Function to add a record*/
+  $scope.addLevelFive = function(){
+  
+    var checkRequired = true;
+    var ranNum = 0;
+    while(checkRequired){
+     ranNum = Math.floor((Math.random() * 100) + 1);
+
+      var res = $scope.pocData.levelFiveData.filter(function(obj){
+      return obj.levelFiveId == ranNum;
+      }); 
+
+      checkRequired = res.length == 0 ? false : true;
+    }
+
+      $scope.pocData.levelFiveData.unshift({"levelFourId" : $scope.levelFourId,
+        "levelFiveId" : ranNum,
+        "levelFiveName" : "",
+        "levelFiveAddress" : "",
+        "isEditing" : true
+      });
+    }
+
+  $scope.editItem = function(levelFiveId){
+      for(var i=0; i < $scope.pocData.levelFiveData.length; i++){
+        if($scope.pocData.levelFiveData[i].levelFiveId == levelFiveId){
+          $scope.pocData.levelFiveData[i].isEditing =  !$scope.pocData.levelFiveData[i].isEditing; 
+        }
+      }  
+    }
+
+  $scope.removeRow = function(levelFiveId){
+      var index = -1;   
+    for( var i = 0; i < $scope.pocData.levelFiveData.length; i++ ) {
+      if( $scope.pocData.levelFiveData[i].levelFiveData === levelFiveId ) {
+        index = i;
+        break;
+      }
+    }
+    $scope.pocData.levelFiveData.splice( index, 1 );   
+  };
+
+  $scope.returnToLevelFour = function () {
+  $location.path("/levelFour/" + $scope.levelFourId);
+};
+
+}]);
+
+/****************************************** LEVEL FIVE CONTROLLER TILL HERE ***********************************************/

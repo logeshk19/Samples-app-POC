@@ -1,8 +1,8 @@
 <section>
   <div class="search">
   	<h1>Rooms</h1>
-  	<label>{{pocData.roomsData.roomNum}}</label>
   	<label>{{floorInfo[0].floorName}}</label>
+  	<button class="btn h-marginBottom h-blockButton" ng-click="addRoom(); $event.stopPropagation();">Add room</button>
   	<table class="table">
 	<tr>
 		<th>Room
@@ -14,22 +14,24 @@
 		</th>
 		
 	</tr>
-	<tr ng-repeat="room in roomDetails">
+	<tr class="datarows" ng-click="clickRoom(room)" ng-repeat="room in pocData.roomData" ng-if="room.floorId == floorId">
 		<td class="roomName"> 
 			<div ng-hide="room.isEditing"> {{room.roomName}} </div>
-			<input ng-show="room.isEditing" ng-model="room.roomName"/> 
+			<input ng-show="room.isEditing" ng-click="$event.stopPropagation();" ng-model="room.roomName"/> 
 		</td>
 		<td> 
 			<div ng-hide="room.isEditing">  {{room.address}} </div>
-			<input ng-show="room.isEditing" ng-model="room.address"/> 
+			<input ng-show="room.isEditing" ng-click="$event.stopPropagation();" ng-model="room.address"/> 
 		</td>
 		<td>
-		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(room.roomNum)"/>
+		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(room.roomId); $event.stopPropagation();"/>
 		</td>
 		<td>
-		<input type="button" value="{{room.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editRoom($index)"/>
+		<input type="button" value="{{room.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editRoom(room.roomId); $event.stopPropagation();"/>
 		</td>
 	</tr>
 	</table>
+	<br/>
+	<button class="btn" ng-click="returnToFloors()">Return to Floors</button>
 	</div>
 	</section>

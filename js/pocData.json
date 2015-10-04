@@ -58,19 +58,30 @@
 "roomData" : [
 {
     "floorId" : "0",
-    "roomNum" : "0",
+    "roomId" : "0",
     "roomName" : "CC-512",
     "address" : "US",
     "isEditing" : false
 }
 ],
 
-"level4Data" : [
+"levelFourData" : [
 {
-    "roomNum" : "0",
-    "level4Id" : "0",
-    "level4Name" : "Shelf ABC",
-    "isEditing" : "false"
+    "roomId" : "0",
+    "levelFourId" : "0",
+    "levelFourName" : "Shelf ABC",
+    "levelFourAddress" : "US",
+    "isEditing" : false
+}
+],
+
+"levelFiveData" : [
+{
+    "levelFourId" : "0",
+    "levelFiveId" : "0",
+    "levelFiveName" : "Testing",
+    "levelFiveAddress" : "US",
+    "isEditing" : false
 }
 ]
 }

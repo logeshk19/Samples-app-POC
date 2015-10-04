@@ -1,0 +1,37 @@
+<section class="artistpage">
+  <div class="search">
+  	<h1>Level Five</h1>
+  	<label>{{levelFourInfo[0].levelFourName}}</label>
+  	<button class="btn h-marginBottom h-blockButton" ng-click="addLevelFive(); $event.stopPropagation();">Add item</button>
+  	<table class="table">
+	<tr>
+		<th>Title
+		</th>
+		<th>Address
+		</th>
+		<th class="alignCenter" colspan="2">
+			Actions
+		</th>
+		
+	</tr>
+	<tr class="datarows" ng-repeat="item in pocData.levelFiveData" ng-if="item.levelFourId == levelFourId">
+		<td class="locationName"> 
+			<div ng-hide="item.isEditing"> {{item.levelFiveName}} </div>
+			<input ng-show="item.isEditing" ng-click="$event.stopPropagation();"  ng-model="item.levelFiveName"/> 
+		</td>
+		<td> 
+			<div ng-hide="item.isEditing">  {{item.levelFiveAddress}} </div>
+			<input ng-show="item.isEditing" ng-click="$event.stopPropagation();" ng-model="item.levelFiveAddress"/> 
+		</td>
+		<td>
+		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(item.levelFiveId); $event.stopPropagation();"/>
+		</td>
+		<td>
+		<input type="button" value="{{item.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editItem(item.levelFiveId); $event.stopPropagation();"/>
+		</td>
+	</tr>
+</table>
+	<br/>
+	<button class="btn" ng-click="returnToLevelFour()">Return to Level Four</button>
+	</div>
+</section>

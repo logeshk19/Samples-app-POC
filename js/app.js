@@ -27,6 +27,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
     templateUrl : 'partials/roomDetails.html',
     controller : 'RoomController'
   }).
+  when('/levelFour/:roomId', {
+    templateUrl : 'partials/levelFourDetails.html',
+    controller : 'LevelFourController'
+  }).
+  when('/levelFive/:levelFourId', {
+    templateUrl : 'partials/levelFiveDetails.html',
+    controller : 'LevelFiveController'
+  }).
   otherwise({
     redirectTo: '/main'
   });
