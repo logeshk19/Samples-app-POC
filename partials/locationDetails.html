@@ -2,6 +2,9 @@
   <div class="search">
   	<h1>Buildings</h1>
   	<button class="btn h-marginBottom" ng-click="addBuilding(); $event.stopPropagation();">Add building</button>
+  	<div class="bar" style="margin-top : -30px">
+    	 <input type="text" class="search" ng-model="searchBuilding" placeholder="Search for building" />
+     </div>
   	<table class="table">
 	<tr>
 		<th>Building
@@ -14,7 +17,7 @@
 		
 	</tr>
 	
-	<tr ng-click = "clickBuilding(location)" class="datarows" ng-repeat="location in pocData.locationData">
+	<tr ng-click = "clickBuilding(location)" class="datarows" ng-repeat="location in pocData.locationData | searchFor:searchBuilding">
 		
 		<td class="locationName"> 
 			<div ng-hide="location.isEditing"> {{location.buildingName}} </div>

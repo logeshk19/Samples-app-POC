@@ -407,3 +407,20 @@ $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
 }]);
 
 /****************************************** LEVEL FIVE CONTROLLER TILL HERE ***********************************************/
+
+pocControllers.filter('searchFor', function(){
+    return function(arr, searchBuilding){
+        console.log("Search string is : " + searchBuilding);
+        if(!searchBuilding){
+            return arr;
+        }
+        var result = [];
+        searchBuilding = searchBuilding.toLowerCase();
+        angular.forEach(arr, function(item){
+            if(item.buildingName.toLowerCase().indexOf(searchBuilding) !== -1){
+            result.push(item);
+        }
+        });
+        return result;
+    };
+});
