@@ -3,9 +3,20 @@ var pocControllers = angular.module('pocControllers', []);
 
 /******************************************* FACTORY ***********************************************************************/
 
-pocControllers.factory("pocData", function(){
-  return {};
-});
+pocControllers.factory("pocData", ['$http', function($http){
+  var pocData = {};
+  /*Checking if the object is empty i.e. is this a first time load*/
+ if(Object.keys(pocData).length == 0) {
+     $http.get('js/pocData.json').success(function(data) { 
+      pocData.locationData = data.locationData;
+      pocData.floorData = data.floorData;
+      pocData.roomData = data.roomData;
+      pocData.levelFourData = data.levelFourData;
+      pocData.levelFiveData = data.levelFiveData;
+    });
+   }
+  return pocData;
+}]);
 
 /****************************************** FACTORY TILL HERE *************************************************************/
 
@@ -17,8 +28,7 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
   $scope.addText = "Add building";
   $scope.pocData = pocData;
 
-  /*Checking if the object is empty i.e. is this a first time load*/
- if(Object.keys(pocData).length == 0) {
+  if(Object.keys($scope.pocData).length == 0) {
      $http.get('js/pocData.json').success(function(data) { 
       $scope.pocData.locationData = data.locationData;
       $scope.pocData.floorData = data.floorData;
@@ -79,6 +89,9 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
 pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$routeParams', 'pocData', function($scope, $http, $location,  $routeParams, pocData){
   $scope.locationId = $routeParams.locId;
   $scope.pocData = pocData;
+
+  $scope.initialize = function(flag){
+  if(flag){
   $scope.buildingInfo = $scope.pocData.locationData.filter(function(obj){
     return obj.locId == $scope.locationId;
   });
@@ -131,16 +144,35 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$
 
 $scope.returnToBuildings = function () {
   $location.path("/main");
-};
+};  
+  }
+}
+
+if(Object.keys($scope.pocData).length == 0) {
+     $http.get('js/pocData.json').success(function(data) { 
+      $scope.pocData.locationData = data.locationData;
+      $scope.pocData.floorData = data.floorData;
+      $scope.pocData.roomData = data.roomData;
+      $scope.pocData.levelFourData = data.levelFourData;
+      $scope.pocData.levelFiveData = data.levelFiveData;
+      $scope.initialize(true);
+    });
+   } else {
+    $scope.initialize(true);
+   }
+ 
 }]);
 
 /****************************************** FLOORS CONTROLLER TILL HERE ****************************************************/
 
 /******************************************* ROOMS CONTROLLER *************************************************************/
-pocControllers.controller('RoomController', ['$scope', '$location', '$routeParams', 'pocData', function($scope, $location, $routeParams, pocData){
+pocControllers.controller('RoomController', ['$scope', '$http', '$location', '$routeParams', 'pocData', function($scope, $http, $location, $routeParams, pocData){
   $scope.floorId = $routeParams.floorId;
   $scope.pocData = pocData;
-  $scope.floorInfo = $scope.pocData.floorData.filter(function(obj){
+
+$scope.initialize = function(flag){
+  if(flag){
+    $scope.floorInfo = $scope.pocData.floorData.filter(function(obj){
     return obj.floorId == $scope.floorId;
   });
 
@@ -191,18 +223,39 @@ pocControllers.controller('RoomController', ['$scope', '$location', '$routeParam
   };
 
   $scope.returnToFloors = function () {
-  $location.path("/floors/" + $scope.floorInfo[0].buildingId);
-};
+    $location.path("/floors/" + $scope.floorInfo[0].locId);
+  }
+  }
+}
+
+
+  if(Object.keys($scope.pocData).length == 0) {
+     $http.get('js/pocData.json').success(function(data) { 
+      $scope.pocData.locationData = data.locationData;
+      $scope.pocData.floorData = data.floorData;
+      $scope.pocData.roomData = data.roomData;
+      $scope.pocData.levelFourData = data.levelFourData;
+      $scope.pocData.levelFiveData = data.levelFiveData;
+      $scope.initialize(true);
+    });
+   } else {
+    $scope.initialize(true);
+   }
+
+  
 
 }]);
 
 /****************************************** ROOMS CONTROLLER TILL HERE ****************************************************/
 
 /******************************************* LEVEL FOUR CONTROLLER *************************************************************/
-pocControllers.controller('LevelFourController', ['$scope', '$location', '$routeParams', 'pocData', function($scope, $location, $routeParams, pocData){
+pocControllers.controller('LevelFourController', ['$scope', '$http', '$location', '$routeParams', 'pocData', function($scope, $http, $location, $routeParams, pocData){
   $scope.roomId = $routeParams.roomId;
   $scope.pocData = pocData;
-  $scope.roomInfo = $scope.pocData.roomData.filter(function(obj){
+
+$scope.initialize = function(flag){
+  if(flag){
+    $scope.roomInfo = $scope.pocData.roomData.filter(function(obj){
     return obj.roomId == $scope.roomId;
   });
 
@@ -255,6 +308,21 @@ pocControllers.controller('LevelFourController', ['$scope', '$location', '$route
   $scope.returnToRooms = function () {
   $location.path("/rooms/" + $scope.roomInfo[0].floorId);
 };
+  }
+}
+
+  if(Object.keys($scope.pocData).length == 0) {
+     $http.get('js/pocData.json').success(function(data) { 
+      $scope.pocData.locationData = data.locationData;
+      $scope.pocData.floorData = data.floorData;
+      $scope.pocData.roomData = data.roomData;
+      $scope.pocData.levelFourData = data.levelFourData;
+      $scope.pocData.levelFiveData = data.levelFiveData;
+      $scope.initialize(true);
+    });
+   } else {
+    $scope.initialize(true);
+   }
 
 }]);
 
@@ -263,10 +331,13 @@ pocControllers.controller('LevelFourController', ['$scope', '$location', '$route
 
 
 /******************************************* LEVEL FIVE CONTROLLER *************************************************************/
-pocControllers.controller('LevelFiveController', ['$scope', '$location', '$routeParams', 'pocData', function($scope, $location, $routeParams, pocData){
+pocControllers.controller('LevelFiveController', ['$scope', '$http', '$location', '$routeParams', 'pocData', function($scope, $http, $location, $routeParams, pocData){
   $scope.levelFourId = $routeParams.levelFourId;
   $scope.pocData = pocData;
-  $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
+
+  $scope.initialize =function(flag){
+    if(flag){
+$scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
     return obj.levelFourId == $scope.levelFourId;
   });
 
@@ -317,6 +388,21 @@ pocControllers.controller('LevelFiveController', ['$scope', '$location', '$route
   $scope.returnToLevelFour = function () {
   $location.path("/levelFour/" + $scope.levelFourInfo[0].roomId);
 };
+    }
+  }
+
+  if(Object.keys($scope.pocData).length == 0) {
+     $http.get('js/pocData.json').success(function(data) { 
+      $scope.pocData.locationData = data.locationData;
+      $scope.pocData.floorData = data.floorData;
+      $scope.pocData.roomData = data.roomData;
+      $scope.pocData.levelFourData = data.levelFourData;
+      $scope.pocData.levelFiveData = data.levelFiveData;
+      $scope.initialize(true);
+    });
+   } else {
+    $scope.initialize(true);
+   }
 
 }]);
 

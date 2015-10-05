@@ -12,6 +12,14 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="main" ng-view></div>
+	<div id="header">
+		<div id="header_main">	
+			<h1>Target Sample Management</h1>
+		</div> 
+	</div>
+	<div class="main">
+		<div class="leftNav"></div>
+		<div class="content mainContent" ng-view></div>
+	</div>
 </body>
 </html>

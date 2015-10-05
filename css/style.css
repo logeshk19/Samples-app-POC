@@ -379,4 +379,18 @@ th {
 
 .table .datarows:hover{
   background: #0A2229;
-};
+}
+
+#header{
+  height: 90px;
+  position: relative;
+  background: white;
+}
+
+#header_main {
+  position: absolute;
+  top:33%;
+  left:30px;
+}
+
+
