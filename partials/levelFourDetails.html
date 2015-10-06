@@ -3,6 +3,9 @@
   	<h1>Level Four</h1>
   	<label>{{roomInfo[0].roomName}}</label>
   	<button class="btn h-marginBottom h-blockButton" ng-click="addLevelFour(); $event.stopPropagation();">Add item</button>
+  	<div class="bar">
+    	 <input type="text" class="h-padding" ng-model="searchLevel4" placeholder="Search for level" />
+     </div>
   	<table class="table">
 	<tr>
 		<th>Title
@@ -14,7 +17,7 @@
 		</th>
 		
 	</tr>
-	<tr ng-click="clickItem(item)" class="datarows" ng-repeat="item in pocData.levelFourData" ng-if="item.roomId == roomId">
+	<tr ng-click="clickItem(item)" class="datarows" ng-repeat="item in pocData.levelFourData | searchForLevel4 : searchLevel4" ng-if="item.roomId == roomId">
 		<td class="locationName"> 
 			<div ng-hide="item.isEditing"> {{item.levelFourName}} </div>
 			<input ng-show="item.isEditing" ng-click="$event.stopPropagation();"  ng-model="item.levelFourName"/> 

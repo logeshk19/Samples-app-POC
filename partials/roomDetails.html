@@ -3,6 +3,9 @@
   	<h1>Rooms</h1>
   	<label>{{floorInfo[0].floorName}}</label>
   	<button class="btn h-marginBottom h-blockButton" ng-click="addRoom(); $event.stopPropagation();">Add room</button>
+  	<div class="bar">
+    	 <input type="text" class="h-padding" ng-model="searchRoom" placeholder="Search for room" />
+     </div>
   	<table class="table">
 	<tr>
 		<th>Room
@@ -14,7 +17,7 @@
 		</th>
 		
 	</tr>
-	<tr class="datarows" ng-click="clickRoom(room)" ng-repeat="room in pocData.roomData" ng-if="room.floorId == floorId">
+	<tr class="datarows" ng-click="clickRoom(room)" ng-repeat="room in pocData.roomData | searchForRoom:searchRoom" ng-if="room.floorId == floorId">
 		<td class="roomName"> 
 			<div ng-hide="room.isEditing"> {{room.roomName}} </div>
 			<input ng-show="room.isEditing" ng-click="$event.stopPropagation();" ng-model="room.roomName"/> 
