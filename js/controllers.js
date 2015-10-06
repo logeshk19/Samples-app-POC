@@ -423,3 +423,67 @@ pocControllers.filter('searchFor', function(){
         return result;
     };
 });
+
+pocControllers.filter('searchForRoom', function(){
+    return function(arr, searchRoom){
+        if(!searchRoom){
+            return arr;
+        }
+        var result = [];
+        searchRoom = searchRoom.toLowerCase();
+        angular.forEach(arr, function(item){
+            if(item.roomName.toLowerCase().indexOf(searchRoom) !== -1){
+            result.push(item);
+        }
+        });
+        return result;
+    };
+});
+
+pocControllers.filter('searchForFloor', function(){
+    return function(arr, searchFloor){
+        if(!searchFloor){
+            return arr;
+        }
+        var result = [];
+        searchFloor = searchFloor.toLowerCase();
+        angular.forEach(arr, function(item){
+            if(item.floorName.toLowerCase().indexOf(searchFloor) !== -1){
+            result.push(item);
+        }
+        });
+        return result;
+    };
+});
+
+pocControllers.filter('searchForLevel4', function(){
+    return function(arr, searchLevel4){
+        if(!searchLevel4){
+            return arr;
+        }
+        var result = [];
+        searchLevel4 = searchLevel4.toLowerCase();
+        angular.forEach(arr, function(item){
+            if(item.levelFourName.toLowerCase().indexOf(searchLevel4) !== -1){
+            result.push(item);
+        }
+        });
+        return result;
+    };
+});
+
+pocControllers.filter('searchForLevel5', function(){
+    return function(arr, searchLevel5){
+        if(!searchLevel5){
+            return arr;
+        }
+        var result = [];
+        searchLevel5 = searchLevel5.toLowerCase();
+        angular.forEach(arr, function(item){
+            if(item.levelFiveName.toLowerCase().indexOf(searchLevel5) !== -1){
+            result.push(item);
+        }
+        });
+        return result;
+    };
+});
