@@ -17,7 +17,7 @@
 		
 	</tr>
 	
-	<tr ng-click = "clickBuilding(location)" class="datarows" ng-repeat="location in pocData.locationData | searchFor:searchBuilding">
+	<tr ng-click = "clickBuilding(location)" class="datarows" ng-repeat="location in pocData.locationData | searchFor:searchBuilding:'building'">
 		
 		<td class="locationName"> 
 			<div ng-hide="location.isEditing"> {{location.buildingName}} </div>

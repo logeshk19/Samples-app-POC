@@ -408,15 +408,51 @@ $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
 
 /****************************************** LEVEL FIVE CONTROLLER TILL HERE ***********************************************/
 
+
+/****************************************** ORDER ITEM CONTROLLER **********************************************************/
+
+pocControllers.controller('OrderItemController', ['$scope', '$http', '$location', '$routeParams',  function($scope, $http, $location, $routeParams, pocData){
+ }]);
+
+/****************************************** ORDER ITEM CONTROLLER TILL HERE ************************************************/
+
+
+/****************************************** FILTERS AND DIRECTIVES ************************************************************/
 pocControllers.filter('searchFor', function(){
-    return function(arr, searchBuilding){
-        if(!searchBuilding){
+    return function(arr, searchText, searchField){
+        if(!searchText){
             return arr;
         }
         var result = [];
-        searchBuilding = searchBuilding.toLowerCase();
+        var val = "";
+        searchText = searchText.toLowerCase();
         angular.forEach(arr, function(item){
-            if(item.buildingName.toLowerCase().indexOf(searchBuilding) !== -1){
+          switch(searchField){
+            case "building":
+             val = item.buildingName;
+             break;
+
+              case "rooms":
+             val = item.roomName;
+             break;
+
+              case "floors":
+             val = item.floorName;
+             break;
+
+              case "searchLevelFour":
+             val = item.levelFourName;
+             break;
+
+              case "searchLevelFive":
+             val = item.levelFiveName;
+             break;
+
+              case "default":
+             val = item.buildingName;
+             break;
+          }
+            if(val.toLowerCase().indexOf(searchText) !== -1){
             result.push(item);
         }
         });
@@ -424,66 +460,21 @@ pocControllers.filter('searchFor', function(){
     };
 });
 
-pocControllers.filter('searchForRoom', function(){
-    return function(arr, searchRoom){
-        if(!searchRoom){
-            return arr;
-        }
-        var result = [];
-        searchRoom = searchRoom.toLowerCase();
-        angular.forEach(arr, function(item){
-            if(item.roomName.toLowerCase().indexOf(searchRoom) !== -1){
-            result.push(item);
-        }
+/*pocControllers.directive('optionsClass', function ($parse) {
+  return {
+    require: 'select',
+    link: function(scope, elem, attrs, ngSelect) {
+      var optionsSourceStr = attrs.ngOptions.split(' ')[4],
+          getOptionsClass = attrs.optionsClass;
+          
+      scope.$watch(optionsSourceStr, function(items) {
+        angular.forEach(items, function(item, index) {
+          var option = elem.find('option')[index];
+              angular.element(option).addClass(getOptionsClass); 
         });
-        return result;
-    };
-});
+      });
+    }
+  };
+});*/
 
-pocControllers.filter('searchForFloor', function(){
-    return function(arr, searchFloor){
-        if(!searchFloor){
-            return arr;
-        }
-        var result = [];
-        searchFloor = searchFloor.toLowerCase();
-        angular.forEach(arr, function(item){
-            if(item.floorName.toLowerCase().indexOf(searchFloor) !== -1){
-            result.push(item);
-        }
-        });
-        return result;
-    };
-});
-
-pocControllers.filter('searchForLevel4', function(){
-    return function(arr, searchLevel4){
-        if(!searchLevel4){
-            return arr;
-        }
-        var result = [];
-        searchLevel4 = searchLevel4.toLowerCase();
-        angular.forEach(arr, function(item){
-            if(item.levelFourName.toLowerCase().indexOf(searchLevel4) !== -1){
-            result.push(item);
-        }
-        });
-        return result;
-    };
-});
-
-pocControllers.filter('searchForLevel5', function(){
-    return function(arr, searchLevel5){
-        if(!searchLevel5){
-            return arr;
-        }
-        var result = [];
-        searchLevel5 = searchLevel5.toLowerCase();
-        angular.forEach(arr, function(item){
-            if(item.levelFiveName.toLowerCase().indexOf(searchLevel5) !== -1){
-            result.push(item);
-        }
-        });
-        return result;
-    };
-});
+/****************************************** FILTERS AND DIRECTIVES  TILL HERE ******************************************/

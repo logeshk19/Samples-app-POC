@@ -17,7 +17,7 @@
 		</th>
 		
 	</tr>
-	<tr class="datarows" ng-repeat="item in pocData.levelFiveData | searchForLevel5 : searchLevel5" ng-if="item.levelFourId == levelFourId">
+	<tr class="datarows" ng-repeat="item in pocData.levelFiveData | searchFor : searchLevel5 : 'searchLevelFive'" ng-if="item.levelFourId == levelFourId">
 		<td class="locationName"> 
 			<div ng-hide="item.isEditing"> {{item.levelFiveName}} </div>
 			<input ng-show="item.isEditing" ng-click="$event.stopPropagation();"  ng-model="item.levelFiveName"/> 

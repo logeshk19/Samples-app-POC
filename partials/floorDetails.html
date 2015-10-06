@@ -17,7 +17,8 @@
 		</th>
 		
 	</tr>
-	<tr ng-click="clickFloor(floor)" class="datarows" ng-repeat="floor in pocData.floorData | searchForFloor : searchFloor" ng-if="floor.locId == locationId">
+	<tr ng-click="clickFloor(floor)" class="datarows" ng-repeat="floor in pocData.floorData | searchFor : searchFloor : 'floors'" 
+	ng-if="floor.locId == locationId">
 		<td class="locationName"> 
 			<div ng-hide="floor.isEditing"> {{floor.floorName}} </div>
 			<input ng-show="floor.isEditing" ng-click="$event.stopPropagation();"  ng-model="floor.floorName"/> 
