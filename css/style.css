@@ -398,10 +398,13 @@ th {
 }
 
 input.search {
-  border: 2px solid #1fa67a;
   font-size: 16px;
   padding-left: 10px;
   height: 35px;
   width: 280px;
+}
+
+input.h-padding {
+  padding: 10px 0 10px 15px;
 }
 

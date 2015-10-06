@@ -410,7 +410,6 @@ $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
 
 pocControllers.filter('searchFor', function(){
     return function(arr, searchBuilding){
-        console.log("Search string is : " + searchBuilding);
         if(!searchBuilding){
             return arr;
         }
