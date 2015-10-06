@@ -3,7 +3,22 @@ var myApp = angular.module('myApp', [
   'pocControllers'
 ]);
 
-
+myApp.controller("MainController", ['$scope',  '$location',  function($scope, $location){
+  $scope.actions = [{
+    "name" : "location information",
+  },
+  {
+    "name" : "order item"
+  }]
+  $scope.actionSelected = $scope.actions[0];
+  $scope.changeEvent = function(item){
+   if ($scope.actionSelected.name == "order item"){
+      $location.path("orderItem");
+    } else {
+      $location.path("main" );
+    }
+  }
+}]);
 
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
@@ -34,6 +49,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
   when('/levelFive/:levelFourId', {
     templateUrl : 'partials/levelFiveDetails.html',
     controller : 'LevelFiveController'
+  }).
+  when('/orderItem', {
+    templateUrl : 'partials/orderItem.html',
+    controller : 'OrderItemController'
   }).
   otherwise({
     redirectTo: '/main'

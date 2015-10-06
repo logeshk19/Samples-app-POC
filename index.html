@@ -17,6 +17,13 @@
 			<h1>Target Sample Management</h1>
 		</div> 
 	</div>
+	<div ng-controller="MainController" id="subHeading">
+		<div id="subHeading_main">
+			<p class="subHeadingText">Administrator</p>	
+			 <select class="actions" ng-model="actionSelected" ng-options="action.name for action in actions"  ng-change="changeEvent($event)">
+    	 </select>
+		</div> 
+	</div>
 	<div class="main">
 		<div class="leftNav"></div>
 		<div class="content mainContent" ng-view></div>

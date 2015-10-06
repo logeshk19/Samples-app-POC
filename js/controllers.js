@@ -5,6 +5,8 @@ var pocControllers = angular.module('pocControllers', []);
 
 pocControllers.factory("pocData", ['$http', function($http){
   var pocData = {};
+
+ 
   /*Checking if the object is empty i.e. is this a first time load*/
  if(Object.keys(pocData).length == 0) {
      $http.get('js/pocData.json').success(function(data) { 
@@ -408,6 +410,19 @@ $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
 
 /****************************************** LEVEL FIVE CONTROLLER TILL HERE ***********************************************/
 
+
+/****************************************** ORDER ITEM CONTROLLER  ********************************************************/
+
+
+pocControllers.controller('OrderItemController', ['$scope', '$http', '$location', function($scope, $http, $location ){
+}]);
+
+/****************************************** ORDER ITEM TILL HERE  **********************************************************/
+
+
+
+
+/******************************************  FILTERS AND DIRECTIVES  ***************************************************/
 pocControllers.filter('searchFor', function(){
     return function(arr, searchBuilding){
         if(!searchBuilding){
@@ -423,3 +438,23 @@ pocControllers.filter('searchFor', function(){
         return result;
     };
 });
+
+
+/*pocControllers.directive('optionsClass', function ($parse) {
+  return {
+    require: 'select',
+    link: function(scope, elem, attrs, ngSelect) {
+      var optionsSourceStr = attrs.ngOptions.split(' ')[4],
+          getOptionsClass = attrs.optionsClass;
+          
+      scope.$watch(optionsSourceStr, function(items) {
+        angular.forEach(items, function(item, index) {
+          var option = elem.find('option')[index];
+              angular.element(option).addClass(getOptionsClass); 
+        });
+      });
+    }
+  };
+});*/
+
+/******************************************  FILTERS AND DIRECTIVES TILL HERE *********************************************/
