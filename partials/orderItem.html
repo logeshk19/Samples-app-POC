@@ -6,7 +6,7 @@
   	</div>
   	<div class="mainContainer">
   		<input placeholder="Search for filters" ng-model="searchFilter" type="text"></input>
-		<ul ng-show="showFilters" class="table">
+		<ul ng-show="searchFilter" class="table">
 			
 
 			<li class="h-marginTopBottom" ng-repeat="filter in filterList | searchFilters : searchFilter : this">

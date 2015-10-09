@@ -1,7 +1,7 @@
-/****************************************** ORDER ITEM CONTROLLER **********************************************************/
+/***************************************** ORDER ITEM CONTROLLER **********************************************************/
 
 pocControllers.controller('OrderItemController', ['$scope', '$http', '$location', '$routeParams',  function($scope, $http, $location, $routeParams, pocData){
-	$scope.showFilters = false;
+	/*$scope.showFilters = false;*/
 	$scope.filterList = [{
 		"filterName" : "test",
 		"filterType" : "input"
@@ -19,7 +19,7 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$location'
 pocControllers.filter('searchFilters', function(){
     return function(arr, searchText, $scope){
         if(!searchText){
-        	$scope.showFilters = false;
+        	/*$scope.showFilters = false;*/
             return arr;
         }
         var result = [];
@@ -32,7 +32,7 @@ pocControllers.filter('searchFilters', function(){
         	} 
         });
 
-        result.length > 0 ? $scope.showFilters = true : $scope.showFilters = false;
+       /* result.length > 0 ? $scope.showFilters = true : $scope.showFilters = false;*/
         return result;
     };
 });
@@ -45,4 +45,4 @@ pocControllers.filter('capitalize', function() {
 });
 
 
-/****************************************** FILTERS AND DIRECTIVES  TILL HERE ******************************************/
+/****************************************** FILTERS AND DIRECTIVES  TILL HERE *****************************************/

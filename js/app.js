@@ -1,6 +1,7 @@
 var myApp = angular.module('myApp', [
   'ngRoute',
-  'pocControllers'
+  'pocControllers',
+  'artistControllers'
 ]);
 
 myApp.controller("MainController", ['$scope',  '$location',  function($scope, $location){
@@ -53,6 +54,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
   when('/orderItem', {
     templateUrl : 'partials/orderItem.html',
     controller : 'OrderItemController'
+  }).when('/list', {
+    templateUrl: 'partials/list.html',
+    controller: 'ListController'
+  }).when('/details/:itemId', {
+    templateUrl: 'partials/details.html',
+    controller: 'DetailsController'
   }).
   otherwise({
     redirectTo: '/main'
