@@ -55,9 +55,15 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
   }
 
   $scope.clickBuilding = function(location){
+     $scope.resetIsEditing();
      $location.path("floors/" + location.locId);
   }
 
+$scope.resetIsEditing = function(){
+     $scope.pocData.locationData.every(function(obj){
+      obj.isEditing=false;
+      })
+  }
 
 /*Function to add a record*/
   $scope.addBuilding = function(){
@@ -67,7 +73,11 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
     while(checkRequired){
      ranNum = Math.floor((Math.random() * 100) + 1);
 
-      var res = $scope.pocData.locationData.filter(function(obj){
+      var res = $scope.pocData.lo
+
+
+
+      cationData.filter(function(obj){
       return obj.locId == ranNum;
       }); 
 
@@ -97,7 +107,14 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$
   });
 
   $scope.clickFloor = function(floor){
+    $scope.resetIsEditing();
      $location.path("rooms/" + floor.floorId);
+  }
+
+  $scope.resetIsEditing = function(){
+     $scope.pocData.floorData.every(function(obj){
+      obj.isEditing=false;
+      })
   }
 
   /*Function to add a record*/
@@ -143,6 +160,7 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$
   };
 
 $scope.returnToBuildings = function () {
+  $scope.resetIsEditing();
   $location.path("/main");
 };  
   }
@@ -176,7 +194,14 @@ $scope.initialize = function(flag){
     return obj.floorId == $scope.floorId;
   });
 
+    $scope.resetIsEditing = function(){
+     $scope.pocData.roomData.every(function(obj){
+      obj.isEditing=false;
+      })
+  }
+
   $scope.clickRoom = function(room){
+    $scope.resetIsEditing();
      $location.path("levelFour/" + room.roomId);
   }
 
@@ -223,6 +248,7 @@ $scope.initialize = function(flag){
   };
 
   $scope.returnToFloors = function () {
+    $scope.resetIsEditing();
     $location.path("/floors/" + $scope.floorInfo[0].locId);
   }
   }
@@ -252,7 +278,7 @@ $scope.initialize = function(flag){
 pocControllers.controller('LevelFourController', ['$scope', '$http', '$location', '$routeParams', 'pocData', function($scope, $http, $location, $routeParams, pocData){
   $scope.roomId = $routeParams.roomId;
   $scope.pocData = pocData;
-
+  
 $scope.initialize = function(flag){
   if(flag){
     $scope.roomInfo = $scope.pocData.roomData.filter(function(obj){
@@ -260,8 +286,14 @@ $scope.initialize = function(flag){
   });
 
   $scope.clickItem = function(item){
+     $scope.pocData.levelFourData[$scope.lastEditIndex].isEditing = false;
      $location.path("levelFive/" + item.levelFourId);
   }
+
+  $scope.resetIsEditing = function(){
+     $scope.pocData.levelFourData.every(function(obj){
+      obj.isEditing=false;
+      })
 
 /*Function to add a record*/
   $scope.addLevelFour = function(){
@@ -306,9 +338,11 @@ $scope.initialize = function(flag){
   };
 
   $scope.returnToRooms = function () {
+    $scope.resetIsEditing();
   $location.path("/rooms/" + $scope.roomInfo[0].floorId);
 };
   }
+}
 }
 
   if(Object.keys($scope.pocData).length == 0) {
@@ -334,6 +368,7 @@ $scope.initialize = function(flag){
 pocControllers.controller('LevelFiveController', ['$scope', '$http', '$location', '$routeParams', 'pocData', function($scope, $http, $location, $routeParams, pocData){
   $scope.levelFourId = $routeParams.levelFourId;
   $scope.pocData = pocData;
+  
 
   $scope.initialize =function(flag){
     if(flag){
@@ -366,6 +401,11 @@ $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
       });
     }
 
+    $scope.resetIsEditing = function(){
+     $scope.pocData.levelFiveData.every(function(obj){
+      obj.isEditing=false;
+      })
+
   $scope.editItem = function(levelFiveId){
       for(var i=0; i < $scope.pocData.levelFiveData.length; i++){
         if($scope.pocData.levelFiveData[i].levelFiveId == levelFiveId){
@@ -386,6 +426,7 @@ $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
   };
 
   $scope.returnToLevelFour = function () {
+    $scope.resetIsEditing();
   $location.path("/levelFour/" + $scope.levelFourInfo[0].roomId);
 };
     }
@@ -403,6 +444,8 @@ $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
    } else {
     $scope.initialize(true);
    }
+ }
+
 
 }]);
 

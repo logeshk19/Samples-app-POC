@@ -368,6 +368,10 @@ th {
   text-align: center;
 }
 
+.h-marginTopBottom {
+  margin: 5px 0;
+}
+
 .h-marginBottom {
   margin-bottom: 10px;
 }
@@ -424,4 +428,41 @@ input.h-padding {
 #subHeading_main .actions{
   margin-left: 20px;
   font: inherit;
+}
+
+.leftNav {
+  float: left;
+  width: 30%;
+}
+
+.mainContainer{
+  width: 65%;
+  float:left;
+  margin-left: 20px;
+}
+
+.buttonContainer{
+  text-align:center;
+}
+
+.h-displayInline {
+  display: inline;
+}
+
+.mainContainer .h-rightInput{
+  float: right;
+  width : 80%;
+}
+
+.mainContainer .searchDropdown{
+  font: inherit;
+  padding: 0px;
+}
+
+.mainContainer .select {
+  background:#475B62;
+}
+
+.search .mainContainer input{
+  padding: 2px 5px;
 }
