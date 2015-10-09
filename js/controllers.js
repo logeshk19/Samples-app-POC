@@ -452,14 +452,6 @@ $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
 /****************************************** LEVEL FIVE CONTROLLER TILL HERE ***********************************************/
 
 
-/****************************************** ORDER ITEM CONTROLLER **********************************************************/
-
-pocControllers.controller('OrderItemController', ['$scope', '$http', '$location', '$routeParams',  function($scope, $http, $location, $routeParams, pocData){
- }]);
-
-/****************************************** ORDER ITEM CONTROLLER TILL HERE ************************************************/
-
-
 /****************************************** FILTERS AND DIRECTIVES ************************************************************/
 pocControllers.filter('searchFor', function(){
     return function(arr, searchText, searchField){

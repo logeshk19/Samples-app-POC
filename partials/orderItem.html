@@ -5,8 +5,23 @@
   		<p>Filters added</p>
   	</div>
   	<div class="mainContainer">
-  		<input placeholder = "Search for filters" type="text"></input>
+  		<input placeholder="Search for filters" ng-model="searchFilter" type="text"></input>
+		<ul ng-show="showFilters" class="table">
+			
 
+			<li class="h-marginTopBottom" ng-repeat="filter in filterList | searchFilters : searchFilter : this">
+		
+		 <label for="{{filter.filterName}}" class="h-margin-right">{{filter.filterName | capitalize}}</label>
+			<input id="{{filter.filterName}}" class="listInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
+
+			<input type="button" value="add filter" class="listInputButton" /> 
+		</li>
+		
+		
+		</ul>
+	
+
+		
 		<div class="h-marginTopBottom"> 
 	  		<label for="tcin">TCIN</label>
 			<input id="tcin" class="h-rightInput" placeholder = "TCIN" type="text"></input>

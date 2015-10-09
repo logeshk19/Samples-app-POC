@@ -284,6 +284,9 @@ a.small {
   margin-bottom: 10px;
 }
 
+.h-margin-right{
+margin-right: 20px;
+  }
 .artist info {
   display: block;
   float: left;
@@ -465,4 +468,12 @@ input.h-padding {
 
 .search .mainContainer input{
   padding: 2px 5px;
+}
+
+.search .mainContainer .listInput {
+  width : 49%;
+}
+
+.search .mainContainer .listInputButton{
+  width: 30%;
 }
