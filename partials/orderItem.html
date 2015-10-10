@@ -2,13 +2,13 @@
   <div class="search">
   	<h1>Order Item</h1>
   	<div class="leftNav">
-  		<p>Filters added</p>
+  		<span>Other filters</span>
   		<ul>
   			<li ng-repeat="filter in addedFilters" class="h-relative">
   				
   				<span class="elipsisSpan">
   					<span class="fontBold">{{filter.filterName}}</span> is <span class="fontBold">{{filter.filterValue}}</span></span>
-  				<a href="#" class="anchorButtons cross"></a> 
+  				<a href="" ng-click="removeFilter($index); $event.preventDefault();" class="anchorButtons cross"></a> 
   			
   			</li>
   		</ul>
@@ -23,7 +23,7 @@
 		 <label for="{{filter.filterName}}" class="h-margin-right">{{filter.filterName | capitalize}}</label>
 			<input id="{{filter.filterName}}" ng-model="filterValue" data-val="{{filter.val}}" class="listInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
 
-			<input type="button" value="{{buttonVal}}" ng-click="addFilter(filterValue, filter.val, this); $event.stopPropagation();" class="listInputButton" /> 
+			<input type="button" value="apply" ng-click="addFilter(filterValue, filter.val, this); $event.stopPropagation();" class="listInputButton" /> 
 		</li>
 		
 		
@@ -48,7 +48,7 @@
   	</div>
   	<div class="cf buttonContainer">
 <button class="btn h-displayInline h-blockButton" ng-click="addFloor(); $event.stopPropagation();">Submit</button>
-<button class="btn h-displayInline h-blockButton" ng-click="addFloor(); $event.stopPropagation();">Clear</button>
+<button class="btn h-displayInline h-blockButton" ng-click="clearFilters(); $event.stopPropagation();">Clear</button>
   		</ div>
   </div>
 </section>

@@ -1,10 +1,9 @@
 /**************************************** ORDER ITEM CONTROLLER **********************************************************/
 
-pocControllers.controller('OrderItemController', ['$scope', '$http', '$location', '$routeParams',  function($scope, $http, $location, $routeParams, pocData){
+pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '$location', '$routeParams',  function($scope, $http, $route, $location, $routeParams, pocData){
 	/*$scope.showFilters = false;*/
   $scope.addedFilters = [];
-  $scope.buttonVal = "add filter";
-	$scope.filterList = [{
+  	$scope.filterList = [{
 		"filterName" : "test",
 		"filterType" : "input",
     "val" : "test"
@@ -20,6 +19,15 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$location'
     "val" : "abc"
 	}];
 
+
+  $scope.clearFilters = function(){
+    $route.reload();
+  }
+
+  $scope.removeFilter = function(index){
+    $scope.addedFilters.splice(index, 1);
+  }
+
   $scope.addFilter = function(val, key, scope){
 
     var ind = -1;
@@ -33,8 +41,6 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$location'
     } else {
       $scope.addedFilters.push({"filterName" : key, "filterValue" : val});
     }
-    
-    scope.buttonVal = "edit filter";
   }
 
  }]);
