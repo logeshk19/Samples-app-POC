@@ -105,11 +105,7 @@ $scope.resetIsEditing = function(){
     while(checkRequired){
      ranNum = Math.floor((Math.random() * 100) + 1);
 
-      var res = $scope.pocData.lo
-
-
-
-      cationData.filter(function(obj){
+      var res = $scope.pocData.locationData.filter(function(obj){
       return obj.locId == ranNum;
       }); 
 
