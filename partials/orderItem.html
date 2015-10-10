@@ -3,18 +3,27 @@
   	<h1>Order Item</h1>
   	<div class="leftNav">
   		<p>Filters added</p>
+  		<ul>
+  			<li ng-repeat="filter in addedFilters" class="h-relative">
+  				
+  				<span class="elipsisSpan">
+  					<span class="fontBold">{{filter.filterName}}</span> is <span class="fontBold">{{filter.filterValue}}</span></span>
+  				<a href="#" class="anchorButtons cross"></a> 
+  			
+  			</li>
+  		</ul>
   	</div>
   	<div class="mainContainer">
   		<input placeholder="Search for filters" ng-model="searchFilter" type="text"></input>
 		<ul ng-show="searchFilter" class="table">
 			
 
-			<li class="h-marginTopBottom" ng-repeat="filter in filterList | searchFilters : searchFilter : this">
+			<li class="h-marginTopBottom orderItemList" ng-repeat="filter in filterList | searchFilters : searchFilter : this">
 		
 		 <label for="{{filter.filterName}}" class="h-margin-right">{{filter.filterName | capitalize}}</label>
-			<input id="{{filter.filterName}}" class="listInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
+			<input id="{{filter.filterName}}" ng-model="filterValue" data-val="{{filter.val}}" class="listInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
 
-			<input type="button" value="add filter" class="listInputButton" /> 
+			<input type="button" value="{{buttonVal}}" ng-click="addFilter(filterValue, filter.val, this); $event.stopPropagation();" class="listInputButton" /> 
 		</li>
 		
 		
@@ -28,8 +37,8 @@
 		</div>  		
 
 		<div class="h-marginTopBottom">
-			<label for="deptt">Deptt</label>
-	  		<select class="h-rightInput searchDropdown">
+			<label for="dept">Dept</label>
+	  		<select id="dept" class="h-rightInput searchDropdown">
 	  			<option class="select" val="" selected>Select</option>
 				<option val="" class="select">Test1</option>
 				<option val="" class="select">Test2</option>

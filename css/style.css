@@ -285,7 +285,7 @@ a.small {
 }
 
 .h-margin-right{
-margin-right: 20px;
+margin-right: 15px;
   }
 .artist info {
   display: block;
@@ -471,9 +471,57 @@ input.h-padding {
 }
 
 .search .mainContainer .listInput {
-  width : 48%;
+  max-width : 100%;
+  min-width : 30%;
 }
 
 .search .mainContainer .listInputButton{
-  width: 30%;
+  max-width: 30%;
+  min-width : 5%;
+  margin-left: 5px;
+}
+
+.search .mainContainer .orderItemList{
+  display: inline-flex;
+  width: 100%;
+}
+
+.search .leftNav .elipsisSpan {
+  width: 85%;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+
+.search .leftNav .cross {
+  position: absolute;
+  text-align: center;
+  display: inline;
+  width: 20px;
+  height: 32px;
+  top:5px;
+}
+.search .leftNav .cross:before, .search .leftNav .cross:after {
+  position: absolute;
+   display: inline;
+  content: ' ';
+  height: 15px;
+  width: 2px;
+  background-color: red;
+}
+.search .leftNav .cross:before {
+  transform: rotate(45deg);
+}
+.search .leftNav .cross:after {
+  transform: rotate(-45deg);
+}
+
+.search .leftNav .h-relative{
+  position : relative;
+
+}
+
+.fontBold{
+  font-weight: bold;
 }

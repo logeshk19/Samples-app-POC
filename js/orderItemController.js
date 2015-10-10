@@ -1,15 +1,41 @@
-/***************************************** ORDER ITEM CONTROLLER **********************************************************/
+/**************************************** ORDER ITEM CONTROLLER **********************************************************/
 
 pocControllers.controller('OrderItemController', ['$scope', '$http', '$location', '$routeParams',  function($scope, $http, $location, $routeParams, pocData){
 	/*$scope.showFilters = false;*/
+  $scope.addedFilters = [];
+  $scope.buttonVal = "add filter";
 	$scope.filterList = [{
 		"filterName" : "test",
-		"filterType" : "input"
+		"filterType" : "input",
+    "val" : "test"
 	},
+  {
+    "filterName" : "test1",
+    "filterType" : "input",
+    "val" : "test1"
+  },
 	{
 		"filterName" : "abc",
-		"filterType" : "input"
+		"filterType" : "input",
+    "val" : "abc"
 	}];
+
+  $scope.addFilter = function(val, key, scope){
+
+    var ind = -1;
+    var foundFilter = $scope.addedFilters.filter(function(obj, index){
+      ind = index;
+      return obj.filterName == key;
+    })[0];
+
+    if(foundFilter){
+      $scope.addedFilters[ind].filterValue = val;
+    } else {
+      $scope.addedFilters.push({"filterName" : key, "filterValue" : val});
+    }
+    
+    scope.buttonVal = "edit filter";
+  }
 
  }]);
 
@@ -45,4 +71,4 @@ pocControllers.filter('capitalize', function() {
 });
 
 
-/****************************************** FILTERS AND DIRECTIVES  TILL HERE *****************************************/
+/****************************************** FILTERS AND DIRECTIVES  TILL HERE ****************************************/
