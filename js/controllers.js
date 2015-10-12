@@ -56,7 +56,7 @@ if($routeParams.itemId < $scope.artists.length - 1){
 
 /******************************************* LOCATION CONTROLLER *************************************************************/
 pocControllers.controller('LocationController', ['$scope', '$http', '$location', 'pocData', function($scope, $http, $location, pocData ){
-  $scope.isEditing = false;
+  /*$scope.isEditing = false;*/
   $scope.addText = "Add building";
   $scope.pocData = pocData;
 
@@ -92,9 +92,12 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
   }
 
 $scope.resetIsEditing = function(){
-     $scope.pocData.locationData.every(function(obj){
+      for(index=0;index<$scope.pocData.locationData.length;index++){
+          $scope.pocData.locationData[index].isEditing = false;
+      }
+     /*$scope.pocData.locationData.every(function(obj){
       obj.isEditing=false;
-      })
+      })*/
   }
 
 /*Function to add a record*/
@@ -140,9 +143,12 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$
   }
 
   $scope.resetIsEditing = function(){
-     $scope.pocData.floorData.every(function(obj){
+     for(index=0;index<$scope.pocData.floorData.length;index++){
+          $scope.pocData.floorData[index].isEditing = false;
+      }
+    /* $scope.pocData.floorData.every(function(obj){
       obj.isEditing=false;
-      })
+      })*/
   }
 
   /*Function to add a record*/
@@ -223,9 +229,12 @@ $scope.initialize = function(flag){
   });
 
     $scope.resetIsEditing = function(){
-     $scope.pocData.roomData.every(function(obj){
+      for(index=0;index<$scope.pocData.roomData.length;index++){
+          $scope.pocData.roomData[index].isEditing = false;
+      }
+     /*$scope.pocData.roomData.every(function(obj){
       obj.isEditing=false;
-      })
+      })*/
   }
 
   $scope.clickRoom = function(room){
@@ -319,9 +328,12 @@ $scope.initialize = function(flag){
   }
 
   $scope.resetIsEditing = function(){
-     $scope.pocData.levelFourData.every(function(obj){
+     for(index=0;index<$scope.pocData.levelFourData.length;index++){
+          $scope.pocData.levelFourData[index].isEditing = false;
+      }
+     /*$scope.pocData.levelFourData.every(function(obj){
       obj.isEditing=false;
-      })
+      })*/
 
 /*Function to add a record*/
   $scope.addLevelFour = function(){
@@ -430,9 +442,12 @@ $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
     }
 
     $scope.resetIsEditing = function(){
-     $scope.pocData.levelFiveData.every(function(obj){
+       for(index=0;index<$scope.pocData.levelFiveData.length;index++){
+          $scope.pocData.levelFiveData[index].isEditing = false;
+      }
+    /* $scope.pocData.levelFiveData.every(function(obj){
       obj.isEditing=false;
-      })
+      })*/
 
   $scope.editItem = function(levelFiveId){
       for(var i=0; i < $scope.pocData.levelFiveData.length; i++){

@@ -51,6 +51,14 @@
     "floorId" : "0",
     "locId" : "0",
     "isEditing" : false
+  },
+
+  {
+    "floorName" : "CC-2",
+    "address" : "US",
+    "floorId" : "1",
+    "locId" : "0",
+    "isEditing" : false
   }
 
 ],
