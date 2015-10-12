@@ -525,3 +525,8 @@ input.h-padding {
 .fontBold{
   font-weight: bold;
 }
+
+.errorMsg {
+  color: red;
+  font-size: 14px;
+}

@@ -5,6 +5,7 @@
   	<div class="bar">
     	 <input type="text" class="h-padding h-marginBottom" ng-model="searchBuilding" placeholder="Search for building" />
      </div>
+    <div class="errorMsg"> {{ error }} </div>
   	<table class="table">
 	<tr>
 		<th>Building 
@@ -31,7 +32,7 @@
 		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(location.locId); $event.stopPropagation();"/>
 		</td>
 		<td>
-		<input type="button" value="{{location.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editLocation($index); $event.stopPropagation();"/>
+		<input type="button" value="{{location.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editLocation(location, $index); $event.stopPropagation();"/>
 		</td>
 			
 	</tr>
