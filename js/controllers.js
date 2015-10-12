@@ -14,6 +14,8 @@ pocControllers.factory("pocData", ['$http', function($http){
       pocData.roomData = data.roomData;
       pocData.levelFourData = data.levelFourData;
       pocData.levelFiveData = data.levelFiveData;
+      pocData.itemList = data.items;
+      pocData.resultItems = data.items;
     });
    }
   return pocData;

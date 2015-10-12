@@ -11,7 +11,13 @@ myApp.controller("MainController", ['$scope',  '$location',  function($scope, $l
   {
     "name" : "order item"
   }]
-  $scope.actionSelected = $scope.actions[0];
+
+  if($location.path() == "/orderItem" || $location.path() == "/itemResults" ){
+    $scope.actionSelected = $scope.actions[1];
+  } else {
+    $scope.actionSelected = $scope.actions[0];  
+  }
+  
   $scope.changeEvent = function(item){
    if ($scope.actionSelected.name == "order item"){
       $location.path("orderItem");
@@ -60,6 +66,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
   }).when('/details/:itemId', {
     templateUrl: 'partials/details.html',
     controller: 'DetailsController'
+  }).when('/itemResults', {
+    templateUrl: 'partials/itemList.html',
+    controller: 'ItemsController'
+  }).when('/orderConfirmation', {
+    templateUrl: 'partials/orderConfirmation.html',
+    controller: 'ItemsController'
   }).
   otherwise({
     redirectTo: '/main'

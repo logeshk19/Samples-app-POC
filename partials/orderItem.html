@@ -33,21 +33,21 @@
 		
 		<div class="h-marginTopBottom"> 
 	  		<label for="tcin">TCIN</label>
-			<input id="tcin" class="h-rightInput" placeholder = "TCIN" type="text"></input>
+			<input ng-model="tcin" id="tcin" class="h-rightInput" placeholder = "TCIN" type="text"></input>
 		</div>  		
 
 		<div class="h-marginTopBottom">
 			<label for="dept">Dept</label>
-	  		<select id="dept" class="h-rightInput searchDropdown">
-	  			<option class="select" val="" selected>Select</option>
-				<option val="" class="select">Test1</option>
-				<option val="" class="select">Test2</option>
+	  		<select id="dept" ng-model="dept" class="h-rightInput searchDropdown">    
+	  			<option class="select" value="Select">Select</option>
+				<option value="Test1" class="select">Test12</option>
+				<option value="Test2" class="select">Test22</option>
 			</select>
 		</div>
 
   	</div>
   	<div class="cf buttonContainer">
-<button class="btn h-displayInline h-blockButton" ng-click="addFloor(); $event.stopPropagation();">Submit</button>
+<button class="btn h-displayInline h-blockButton" ng-click="submitFilters(); $event.stopPropagation();">Submit</button>
 <button class="btn h-displayInline h-blockButton" ng-click="clearFilters(); $event.stopPropagation();">Clear</button>
   		</ div>
   </div>

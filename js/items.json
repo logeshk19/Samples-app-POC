@@ -1,0 +1,21 @@
+{ "items" : [
+  {
+    "itemName" :  "Photo1",
+    "dept" : "Marketing",
+      "tcin" : "123",
+     "qty"  : "1"
+  },
+  {
+    "itemName" :  "Photo2",
+    "dept" : "Marketing",
+      "tcin" : "456",
+     "qty"  : "1"
+  }
+  ]
+}
+
+
+
+
+
+

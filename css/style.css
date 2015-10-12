@@ -231,6 +231,70 @@ a.small {
 
 /* Artist List Styles */
 
+.itemlist {
+  background: #EEE8D5;
+  width: 50%;
+  min-width: 320;
+  max-width:500px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  border-radius: 0 0 20px 20px;
+  opacity: .95;
+  z-index: 10;
+}
+
+.itemlist ul {
+  margin: 0;
+  padding: 0;
+  background: #FDF6E3;
+}
+
+.itemlist li {
+  margin: 0;
+  padding: 10px 10px 0 10px;
+  border-bottom: 1px dotted black;
+  opacity: .9;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.itemlist a {
+  display: block;
+  text-decoration: none;
+}
+
+.searchItem img {
+  display: block;
+  float: left;
+  width: 60px;
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.h-margin-right{
+margin-right: 15px;
+  }
+.searchItem .info {
+  display: block;
+  float: left;
+  margin-right: 5px;
+  width: 62%;
+  border-right: 1px dotted black;
+  margin-bottom: 5px;
+}
+
+.searchItem:last-child {
+  border-bottom:none;
+}
+
+.searchItem .qty select{
+  font: inherit;
+}
+
 .artistlist {
   background: #EEE8D5;
   width: 50%;
@@ -524,4 +588,14 @@ input.h-padding {
 
 .fontBold{
   font-weight: bold;
+}
+
+
+.artistpage .itemlist .itemDescription{
+  height: 70px;
+  overflow: hidden;
+  text-overflow: inherit;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
