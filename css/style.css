@@ -599,3 +599,11 @@ input.h-padding {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+
+ .errorMsg {
+   color: red;
+   font-size: 14px;
+  }
+
+
+
