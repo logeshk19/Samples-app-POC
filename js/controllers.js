@@ -71,7 +71,17 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
       $scope.pocData.levelFiveData = data.levelFiveData;
     });
    }
+   
+   /*var removeIncompleteRows = function(){
+        console.log($scope.pocData.locationData.length);
+        for(var index=0; index < $scope.pocData.locationData.length;  index++){
+          if($scope.pocData.locationData[index].buildingName.trim()=="" || $scope.pocData.locationData[index].address.trim()=="")
+              delete $scope.pocData.locationData[index];
+        }
+    };
 
+  removeIncompleteRows();
+*/
   $scope.removeRow = function(locId){
       var index = -1;   
     for( var i = 0; i < $scope.pocData.locationData.length; i++ ) {
@@ -80,21 +90,35 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
         break;
       }
     }
+    if($scope.pocData.locationData[index].buildingName.trim()=="" || $scope.pocData.locationData[index].address.trim()=="")
+      $scope.error=null;
     $scope.pocData.locationData.splice( index, 1 );  
   };
 
-  $scope.editLocation = function(e){
+  $scope.editLocation = function(location, e){
     $scope.editText = $scope.editText == "edit" ? "done" : "edit";
-    $scope.pocData.locationData[e].isEditing =  !$scope.pocData.locationData[e].isEditing;  
+    if(location.buildingName.trim()=="" || location.address.trim()==""){
+      $scope.error = "Please enter both Building and Address details";
+    }
+    else{
+      $scope.pocData.locationData[e].isEditing =  !$scope.pocData.locationData[e].isEditing;  
+      $scope.error = null;
+    }
   }
 
   $scope.clickBuilding = function(location){
-     $scope.resetIsEditing();
-     $location.path("floors/" + location.locId);
-  }
+        for(var index=0; index < $scope.pocData.locationData.length;  index++){
+          if($scope.pocData.locationData[index].isEditing)
+              var supressBuildingClickEvent = true;
+        }
+        if(!supressBuildingClickEvent){
+       $scope.resetIsEditing();
+       $location.path("floors/" + location.locId);
+     }
+  };
 
-$scope.resetIsEditing = function(){
-      for(index=0;index<$scope.pocData.locationData.length;index++){
+  $scope.resetIsEditing = function(){
+      for(var index=0;index<$scope.pocData.locationData.length;index++){
           $scope.pocData.locationData[index].isEditing = false;
       }
      /*$scope.pocData.locationData.every(function(obj){
@@ -121,7 +145,9 @@ $scope.resetIsEditing = function(){
       "address" : "",
        "locId"  : ranNum,
        "isEditing" : true});
+
     };
+
 }]);
 
 /****************************************** LOCATION CONTROLLER TILL HERE **************************************************/
