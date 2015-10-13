@@ -6,6 +6,7 @@
   	<div class="bar">
     	 <input type="text" class="h-padding" ng-model="searchFloor" placeholder="Search for floor" />
      </div>
+    <div class="errorMsg"> {{ error }} </div>
   	<table class="table">
 	<tr>
 		<th>Floor
@@ -28,10 +29,10 @@
 			<input ng-show="floor.isEditing" ng-click="$event.stopPropagation();" ng-model="floor.address"/> 
 		</td>
 		<td>
-		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(floor.floorId); $event.stopPropagation();"/>
+		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow($index); $event.stopPropagation();"/>
 		</td>
 		<td>
-		<input type="button" value="{{floor.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editFloor(floor.floorId); $event.stopPropagation();"/>
+		<input type="button" value="{{floor.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editFloor(floor, $index); $event.stopPropagation();"/>
 		</td>
 	</tr>
 </table>

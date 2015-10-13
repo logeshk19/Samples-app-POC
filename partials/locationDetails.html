@@ -29,7 +29,7 @@
 			<input ng-show="location.isEditing" ng-model="location.address" ng-click="$event.stopPropagation();"/> 
 		</td>
 		<td>
-		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(location.locId); $event.stopPropagation();"/>
+		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow($index); $event.stopPropagation();"/>
 		</td>
 		<td>
 		<input type="button" value="{{location.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editLocation(location, $index); $event.stopPropagation();"/>

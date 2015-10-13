@@ -72,31 +72,14 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
     });
    }
    
-   /*var removeIncompleteRows = function(){
-        console.log($scope.pocData.locationData.length);
-        for(var index=0; index < $scope.pocData.locationData.length;  index++){
-          if($scope.pocData.locationData[index].buildingName.trim()=="" || $scope.pocData.locationData[index].address.trim()=="")
-              delete $scope.pocData.locationData[index];
-        }
-    };
-
-  removeIncompleteRows();
-*/
-  $scope.removeRow = function(locId){
-      var index = -1;   
-    for( var i = 0; i < $scope.pocData.locationData.length; i++ ) {
-      if( $scope.pocData.locationData[i].locId === locId ) {
-        index = i;
-        break;
-      }
-    }
-    if($scope.pocData.locationData[index].buildingName.trim()=="" || $scope.pocData.locationData[index].address.trim()=="")
+  $scope.removeRow = function(index){
+    var location = $scope.pocData.locationData[index];
+    if(location.buildingName.trim()=="" || location.address.trim()=="")
       $scope.error=null;
     $scope.pocData.locationData.splice( index, 1 );  
   };
 
   $scope.editLocation = function(location, e){
-    $scope.editText = $scope.editText == "edit" ? "done" : "edit";
     if(location.buildingName.trim()=="" || location.address.trim()==""){
       $scope.error = "Please enter both Building and Address details";
     }
@@ -107,23 +90,21 @@ pocControllers.controller('LocationController', ['$scope', '$http', '$location',
   }
 
   $scope.clickBuilding = function(location){
-        for(var index=0; index < $scope.pocData.locationData.length;  index++){
-          if($scope.pocData.locationData[index].isEditing)
-              var supressBuildingClickEvent = true;
-        }
-        if(!supressBuildingClickEvent){
+      var supressBuildingClickEvent = false;
+      $scope.pocData.locationData.forEach(function(obj){
+        if(obj.isEditing) supressBuildingClickEvent = true;
+      });
+
+      if(!supressBuildingClickEvent){
        $scope.resetIsEditing();
        $location.path("floors/" + location.locId);
      }
   };
 
   $scope.resetIsEditing = function(){
-      for(var index=0;index<$scope.pocData.locationData.length;index++){
-          $scope.pocData.locationData[index].isEditing = false;
-      }
-     /*$scope.pocData.locationData.every(function(obj){
-      obj.isEditing=false;
-      })*/
+    $scope.pocData.locationData.forEach(function(obj){
+      obj.isEditing = false;
+    });
   }
 
 /*Function to add a record*/
@@ -166,17 +147,20 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$
   });
 
   $scope.clickFloor = function(floor){
-    $scope.resetIsEditing();
+     var supressFloorClickEvent = false;
+      $scope.pocData.floorData.forEach(function(obj){
+        if(obj.isEditing) supressFloorClickEvent = true;
+      });
+   
+    if(!supressFloorClickEvent){
+     $scope.resetIsEditing();
      $location.path("rooms/" + floor.floorId);
   }
-
+}
   $scope.resetIsEditing = function(){
-     for(index=0;index<$scope.pocData.floorData.length;index++){
-          $scope.pocData.floorData[index].isEditing = false;
-      }
-    /* $scope.pocData.floorData.every(function(obj){
+     $scope.pocData.floorData.forEach(function(obj){
       obj.isEditing=false;
-      })*/
+      })
   }
 
   /*Function to add a record*/
@@ -202,23 +186,21 @@ pocControllers.controller('FloorController', ['$scope', '$http', '$location', '$
       });
     }
 
-    $scope.editFloor = function(floorId){
-      for(var i=0; i < $scope.pocData.floorData.length; i++){
-        if($scope.pocData.floorData[i].floorId == floorId){
-          $scope.pocData.floorData[i].isEditing =  !$scope.pocData.floorData[i].isEditing; 
-        }
-      }  
+    $scope.editFloor = function(floor, e){
+      if(floor.floorName.trim()=="" || floor.address.trim()==""){
+      $scope.error = "Please enter both Floor and Address details";
+    }
+    else{
+      $scope.pocData.floorData[e].isEditing =  !$scope.pocData.floorData[e].isEditing;  
+      $scope.error = null;
+    }
     }
 
-  $scope.removeRow = function(floorId){
-      var index = -1;   
-    for( var i = 0; i < $scope.pocData.floorData.length; i++ ) {
-      if( $scope.pocData.floorData[i].floorId === floorId ) {
-        index = i;
-        break;
-      }
-    }
-    $scope.pocData.floorData.splice( index, 1 );   
+  $scope.removeRow = function(index){
+    var floor = $scope.pocData.floorData[index];
+     if(floor.floorName.trim()=="" || floor.address.trim()=="")
+      $scope.error=null;
+      $scope.pocData.floorData.splice( index, 1 );   
   };
 
 $scope.returnToBuildings = function () {
@@ -351,7 +333,8 @@ $scope.initialize = function(flag){
   });
 
   $scope.clickItem = function(item){
-     $scope.pocData.levelFourData[$scope.lastEditIndex].isEditing = false;
+     /*$scope.pocData.levelFourData[$scope.lastEditIndex].isEditing = false;*/
+     $scope.resetIsEditing();
      $location.path("levelFive/" + item.levelFourId);
   }
 
@@ -362,7 +345,7 @@ $scope.initialize = function(flag){
      /*$scope.pocData.levelFourData.every(function(obj){
       obj.isEditing=false;
       })*/
-
+}
 /*Function to add a record*/
   $scope.addLevelFour = function(){
   
@@ -410,7 +393,6 @@ $scope.initialize = function(flag){
   $location.path("/rooms/" + $scope.roomInfo[0].floorId);
 };
   }
-}
 }
 
   if(Object.keys($scope.pocData).length == 0) {
@@ -476,6 +458,7 @@ $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
     /* $scope.pocData.levelFiveData.every(function(obj){
       obj.isEditing=false;
       })*/
+}
 
   $scope.editItem = function(levelFiveId){
       for(var i=0; i < $scope.pocData.levelFiveData.length; i++){
@@ -515,8 +498,6 @@ $scope.levelFourInfo = $scope.pocData.levelFourData.filter(function(obj){
    } else {
     $scope.initialize(true);
    }
- }
-
 
 }]);
 
