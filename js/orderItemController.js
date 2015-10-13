@@ -5,7 +5,7 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
 
   $scope.pocData = pocData;
 
-  $scope.dept = "Select";
+  $scope.dept = "Any department";
   $scope.addedFilters = [];
   
 
@@ -58,13 +58,27 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
   }
 
 
-     if($scope.dept != "Select"){
+     if($scope.dept != "Any department"){
         filterObj.dept = $scope.dept;
      }
 
     if($scope.tcin != "" && $scope.tcin != undefined){
       filterObj.tcin = $scope.tcin;
     }
+
+    if($scope.containerId != "" && $scope.containerId != undefined){
+      filterObj.containerId = $scope.containerId;
+    }
+
+    if($scope.sampleId != "" && $scope.sampleId != undefined){
+      filterObj.sampleId = $scope.sampleId;
+    }
+
+    if($scope.dpci != "" && $scope.dpci != undefined){
+      filterObj.dpci = $scope.dpci;
+    }
+
+    
 
   $scope.pocData.resultItems = [];
     $scope.pocData.itemList.filter(function(obj){
