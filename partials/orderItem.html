@@ -21,7 +21,16 @@
 			<li class="h-marginTopBottom orderItemList" ng-repeat="filter in filterList | searchFilters : searchFilter : this">
 		
 		 <label for="{{filter.filterName}}" class="h-margin-right">{{filter.filterName | capitalize}}</label>
-			<input id="{{filter.filterName}}" ng-model="filterValue" data-val="{{filter.val}}" class="listInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
+			<input id="{{filter.filterName}}" ng-show="filter.filterType == 'input'" ng-model="filterValue" data-val="{{filter.val}}" class="listInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
+
+
+
+			<select  id="{{filter.filterName}}" ng-model="filterValue" ng-show="filter.filterType == 'select'"class="h-rightInput searchDropdown">    
+	  			<option class="select" ng-repeat="option in filter.options"  value="{{option.value}}">{{option.value}}</option>
+				
+			</select>
+
+			
 
 			<input type="button" value="apply" ng-click="addFilter(filterValue, filter.val, this); $event.stopPropagation();" class="listInputButton" /> 
 		</li>
