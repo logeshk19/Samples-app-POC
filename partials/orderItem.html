@@ -21,7 +21,16 @@
 			<li class="h-marginTopBottom orderItemList" ng-repeat="filter in filterList | searchFilters : searchFilter : this">
 		
 		 <label for="{{filter.filterName}}" class="h-margin-right">{{filter.filterName | capitalize}}</label>
-			<input id="{{filter.filterName}}" ng-model="filterValue" data-val="{{filter.val}}" class="listInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
+			<input id="{{filter.filterName}}" ng-show="filter.filterType == 'input'" ng-model="filterValue" data-val="{{filter.val}}" class="listInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
+
+
+
+			<select  id="{{filter.filterName}}" ng-model="filterValue" ng-show="filter.filterType == 'select'"class="h-rightInput searchDropdown">    
+	  			<option class="select" ng-repeat="option in filter.options"  value="{{option.value}}">{{option.value}}</option>
+				
+			</select>
+
+			
 
 			<input type="button" value="apply" ng-click="addFilter(filterValue, filter.val, this); $event.stopPropagation();" class="listInputButton" /> 
 		</li>
@@ -31,17 +40,37 @@
 	
 
 		
+		  
+
+		<div class="h-marginTopBottom"> 
+	  		<label for="containerId">Container Id</label>
+			<input ng-model="containerId" id="containerId" class="h-rightInput" placeholder = "Container Id" type="text"></input>
+		</div>	
+
+		<div class="h-marginTopBottom"> 
+	  		<label for="sampleId">Sample Id</label>
+			<input ng-model="sampleId" id="sampleId" class="h-rightInput" placeholder = "Sample Id" type="text"></input>
+		</div>
+
 		<div class="h-marginTopBottom"> 
 	  		<label for="tcin">TCIN</label>
 			<input ng-model="tcin" id="tcin" class="h-rightInput" placeholder = "TCIN" type="text"></input>
-		</div>  		
+		</div>
+
+		<div class="h-marginTopBottom"> 
+	  		<label for="dpci">DPCI</label>
+			<input ng-model="dpci" id="dpci" class="h-rightInput" placeholder = "DPCI" type="text"></input>
+		</div>
+
+			
 
 		<div class="h-marginTopBottom">
-			<label for="dept">Dept</label>
+			<label for="dept">Department</label>
 	  		<select id="dept" ng-model="dept" class="h-rightInput searchDropdown">    
-	  			<option class="select" value="Select">Select</option>
-				<option value="Test1" class="select">Test12</option>
-				<option value="Test2" class="select">Test22</option>
+	  			<option class="select" value="Any department">Any department</option>
+				<option value="001 Storage and Organization" class="select">001 Storage and Organization</option>
+				<option value="002 Household Cleaning" class="select">002 Household Cleaning</option>
+				<option value="003 Baby Care" class="select">003 Baby Care</option>
 			</select>
 		</div>
 

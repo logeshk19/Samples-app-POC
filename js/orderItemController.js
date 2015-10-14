@@ -5,26 +5,37 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
 
   $scope.pocData = pocData;
 
-  $scope.dept = "Select";
+  $scope.dept = "Any department";
   $scope.addedFilters = [];
   
 
 
   	$scope.filterList = [{
-		"filterName" : "test",
+		"filterName" : "Vendor Id",
 		"filterType" : "input",
-    "val" : "test"
+    "val" : "vendorId"
 	},
   {
-    "filterName" : "test1",
+    "filterName" : "Tracking #",
     "filterType" : "input",
-    "val" : "test1"
+    "val" : "trackingNo"
   },
 	{
-		"filterName" : "abc",
+		"filterName" : "Tracking Location",
 		"filterType" : "input",
-    "val" : "abc"
-	}];
+    "val" : "trackingLocation"
+	},
+  {
+    "filterName" : "Brand",
+    "filterType" : "input",
+    "val" : "brand"
+  },
+  {
+    "filterName" : "Project Status",
+    "filterType" : "select",
+    "options" : [{"key" : "", "value" : "Select"}, {"key" : "", "value" : "Complete"}, {"key" : "", "value" : "Incomplete"}],
+    "val" : "projectStatus"
+  }];
 
 
   $scope.clearFilters = function(){
@@ -58,7 +69,7 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
   }
 
 
-     if($scope.dept != "Select"){
+     if($scope.dept != "Any department"){
         filterObj.dept = $scope.dept;
      }
 
@@ -66,13 +77,30 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
       filterObj.tcin = $scope.tcin;
     }
 
+    if($scope.containerId != "" && $scope.containerId != undefined){
+      filterObj.containerId = $scope.containerId;
+    }
+
+    if($scope.sampleId != "" && $scope.sampleId != undefined){
+      filterObj.sampleId = $scope.sampleId;
+    }
+
+    if($scope.dpci != "" && $scope.dpci != undefined){
+      filterObj.dpci = $scope.dpci;
+    }
+
+    
+
   $scope.pocData.resultItems = [];
     $scope.pocData.itemList.filter(function(obj){
       var flag = true;
       for(var key in filterObj){
-        if(obj[key] ==  filterObj[key] || obj[key] ==  undefined){
+
+        if(obj[key] ==  undefined){
           flag = flag && true;
-        } else {
+        } else if (obj[key].replace("-", "").toLowerCase() ==  filterObj[key].replace("-", "").toLowerCase()){
+          flag = flag && true;
+        }else {
           flag = false;
         }
 
