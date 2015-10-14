@@ -6,6 +6,7 @@
   	<div class="bar">
     	 <input type="text" class="h-padding" ng-model="searchLevel4" placeholder="Search for level" />
      </div>
+     <div class="errorMsg"> {{ error }} </div>
   	<table class="table">
 	<tr>
 		<th>Title
@@ -27,10 +28,10 @@
 			<input ng-show="item.isEditing" ng-click="$event.stopPropagation();" ng-model="item.levelFourAddress"/> 
 		</td>
 		<td>
-		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow(item.levelFourId); $event.stopPropagation();"/>
+		<input type="button" value="Delete" class="btn btn-table" ng-click="removeRow($index); $event.stopPropagation();"/>
 		</td>
 		<td>
-		<input type="button" value="{{item.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editItem(item.levelFourId); $event.stopPropagation();"/>
+		<input type="button" value="{{item.isEditing ? 'done' : 'edit'}}" class="btn btn-table" ng-click="editItem($index); $event.stopPropagation();"/>
 		</td>
 	</tr>
 </table>
