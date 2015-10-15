@@ -72,6 +72,9 @@ myApp.config(['$routeProvider', function($routeProvider) {
   }).when('/orderConfirmation', {
     templateUrl: 'partials/orderConfirmation.html',
     controller: 'ItemsController'
+  }).when('/itemDetails/:itemId', {
+    templateUrl: 'partials/itemDetails.html',
+    controller: 'ItemsController'
   }).
   otherwise({
     redirectTo: '/main'

@@ -351,6 +351,11 @@ margin-right: 15px;
 .h-margin-right{
 margin-right: 15px;
   }
+
+.h-margin-top{
+margin-top: 5px;
+  }
+
 .artist info {
   display: block;
   float: left;

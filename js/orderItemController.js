@@ -121,9 +121,17 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
 /**************************************** ITEMS CONTROLLER **********************************************************/
 
 pocControllers.controller('ItemsController', ['$scope', '$http', '$route', '$location', '$routeParams', 'pocData',  function($scope, $http, $route, $location, $routeParams, pocData){
-  /*$scope.showFilters = false;*/
+  /*$scope.showFilters = false;*/ 
+
   $scope.pocData = pocData;
   $scope.pocData.resultItems = pocData.resultItems;
+
+if($routeParams.itemId != ""  && $routeParams.itemId != undefined){
+    $scope.itemDetails = $scope.pocData.resultItems.filter(function(obj){
+      return obj.itemId == $routeParams.itemId; 
+    });
+  }
+
 
   $scope.backToFilters = function(){
     $location.path('/orderItem');
@@ -131,6 +139,10 @@ pocControllers.controller('ItemsController', ['$scope', '$http', '$route', '$loc
 
   $scope.placeOrder = function(){
    $location.path('/orderConfirmation'); 
+  }
+
+  $scope.itemClick = function(itemId){
+     $location.path('/itemDetails/' + itemId);
   }
 
  }]);
