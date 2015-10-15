@@ -611,4 +611,110 @@ input.h-padding {
   }
 
 
+.leftNavigation{
+  width: 40%;
+  float: left;
+}
+
+.filterContent{
+  width: 60%;
+  margin-left: 40%;
+  padding: 10px;
+}
+
+.filterContent .h-rightInput{
+  float: right;
+  min-width : 40%;
+  max-width : 58%;
+}
+
+.filterContent .searchDropdown{
+  font: inherit;
+  padding: 0px;
+}
+
+.filterContent .select {
+  background:#475B62;
+}
+
+.search .filterContent input{
+  padding: 2px 5px;
+}
+
+.search .filterContent .listInput {
+  max-width : 100%;
+  min-width : 30%;
+}
+
+.search .filterContent .listInputButton{
+  max-width: 30%;
+  min-width : 5%;
+  margin-left: 5px;
+}
+
+.search .filterContent .orderItemList{
+  display: inline-flex;
+  width: 100%;
+}
+
+.leftNavigation label{
+ /* font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;*/
+  /*padding: 5px 20px;
+  position: relative;
+  z-index: 20;
+  display: block;
+  height: 30px;*/
+  cursor: pointer;
+  /*color: #777;*/
+ /* text-shadow: 1px 1px 1px rgba(255,255,255,0.8);*/
+  line-height: 33px;
+  font-size: 19px;
+  background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+  /*box-shadow: 
+    0px 0px 0px 1px rgba(155,155,155,0.3), 
+    1px 0px 0px 0px rgba(255,255,255,0.9) inset, 
+    0px 2px 2px rgba(0,0,0,0.1);*/
+}
+
+.leftNavigation div.inputContainer:hover{
+  background: #003366;
+}
+
+.inputSelected {
+  background: #003366;
+}
+
+/*.leftNavigation input:checked < div,*/
+.leftNavigation input:checked + label:hover{
+  background: #003366;
+  color: #3d7489;
+  text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
+  box-shadow: 
+    0px 0px 0px 1px rgba(155,155,155,0.3), 
+    0px 2px 2px rgba(0,0,0,0.1);
+}
+
+.leftNavigation label:hover:after,
+.leftNavigation input:checked + label:hover:after{
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 13px;
+  top: 7px;
+  background: transparent url(../images/arrow_down.png) no-repeat center center;  
+}
+
+.leftNavigation input{
+  display: none;
+}
+
+.leftNavigation input:checked + label:hover:after{
+  background-image: url(../images/arrow_up.png);
+}
+
+
+
+
+
 

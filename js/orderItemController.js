@@ -1,41 +1,12 @@
 /**************************************** ORDER ITEM CONTROLLER **********************************************************/
 
 pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '$location', '$routeParams', 'pocData',  function($scope, $http, $route, $location, $routeParams, pocData){
-	/*$scope.showFilters = false;*/
+  $scope.filterObj = {"vendorId" : "", "trackingNo" : "","trackingLocation" : "", "brand" : "", "projectStatus":"Select"};
 
   $scope.pocData = pocData;
 
   $scope.dept = "Any department";
   $scope.addedFilters = [];
-  
-
-
-  	$scope.filterList = [{
-		"filterName" : "Vendor Id",
-		"filterType" : "input",
-    "val" : "vendorId"
-	},
-  {
-    "filterName" : "Tracking #",
-    "filterType" : "input",
-    "val" : "trackingNo"
-  },
-	{
-		"filterName" : "Tracking Location",
-		"filterType" : "input",
-    "val" : "trackingLocation"
-	},
-  {
-    "filterName" : "Brand",
-    "filterType" : "input",
-    "val" : "brand"
-  },
-  {
-    "filterName" : "Project Status",
-    "filterType" : "select",
-    "options" : [{"key" : "", "value" : "Select"}, {"key" : "", "value" : "Complete"}, {"key" : "", "value" : "Incomplete"}],
-    "val" : "projectStatus"
-  }];
 
 
   $scope.clearFilters = function(){
@@ -62,31 +33,31 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
   }
 
   $scope.submitFilters = function(){
-     var filterObj = {};
+     
 
   for(var i=0; i < $scope.addedFilters.length; i++){
-    filterObj[$scope.addedFilters[i].filterName] = $scope.addedFilters[i].filterValue;
+    $scope.filterObj[$scope.addedFilters[i].filterName] = $scope.addedFilters[i].filterValue;
   }
 
 
      if($scope.dept != "Any department"){
-        filterObj.dept = $scope.dept;
+        $scope.filterObj.dept = $scope.dept;
      }
 
     if($scope.tcin != "" && $scope.tcin != undefined){
-      filterObj.tcin = $scope.tcin;
+      $scope.filterObj.tcin = $scope.tcin;
     }
 
     if($scope.containerId != "" && $scope.containerId != undefined){
-      filterObj.containerId = $scope.containerId;
+      $scope.filterObj.containerId = $scope.containerId;
     }
 
     if($scope.sampleId != "" && $scope.sampleId != undefined){
-      filterObj.sampleId = $scope.sampleId;
+      $scope.filterObj.sampleId = $scope.sampleId;
     }
 
     if($scope.dpci != "" && $scope.dpci != undefined){
-      filterObj.dpci = $scope.dpci;
+      $scope.filterObj.dpci = $scope.dpci;
     }
 
     
@@ -94,11 +65,11 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
   $scope.pocData.resultItems = [];
     $scope.pocData.itemList.filter(function(obj){
       var flag = true;
-      for(var key in filterObj){
+      for(var key in $scope.filterObj){
 
-        if(obj[key] ==  undefined){
+        if(obj[key] ==  undefined || $scope.filterObj[key] == "" || $scope.filterObj[key] == "Select"){
           flag = flag && true;
-        } else if (obj[key].replace("-", "").toLowerCase() ==  filterObj[key].replace("-", "").toLowerCase()){
+        } else if (obj[key].replace("-", "").toLowerCase() ==  $scope.filterObj[key].replace("-", "").toLowerCase()){
           flag = flag && true;
         }else {
           flag = false;

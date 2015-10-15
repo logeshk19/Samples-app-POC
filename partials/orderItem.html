@@ -1,47 +1,20 @@
 <section class="artistpage">
-  <div class="search">
-  	<h1>Order Item</h1>
-  	<div class="leftNav">
-  		<span>Other filters</span>
-  		<ul>
-  			<li ng-repeat="filter in addedFilters" class="h-relative">
-  				
-  				<span class="elipsisSpan">
-  					<span class="fontBold">{{filter.filterName}}</span> is <span class="fontBold">{{filter.filterValue}}</span></span>
-  				<a href="" ng-click="removeFilter($index); $event.preventDefault();" class="anchorButtons cross"></a> 
-  			
-  			</li>
-  		</ul>
-  	</div>
-  	<div class="mainContainer">
-  		<input placeholder="Search for filters" ng-model="searchFilter" type="text"></input>
-		<ul ng-show="searchFilter" class="table">
+	<div class="search ">
+		<div class="leftNavigation"  ng-init="filterType='value1'">
+			<div class="inputContainer"  ng-class="{ inputSelected : filterType == 'value1'  }">
+				<input id="ac-1"  value="value1" ng-model="filterType" type="radio" />
+				<label for="ac-1">Filters</label>
+			</div>
+			<div class="inputContainer" ng-class="{ inputSelected : filterType == 'value2' }">
+				<input id="ac-2"  value="value2" ng-model="filterType" type="radio" />
+				<label for="ac-2">Additional Filters</label>
+		
+			</div>
 			
-
-			<li class="h-marginTopBottom orderItemList" ng-repeat="filter in filterList | searchFilters : searchFilter : this">
+		</div>
+		<div class="filterContent cf">
 		
-		 <label for="{{filter.filterName}}" class="h-margin-right">{{filter.filterName | capitalize}}</label>
-			<input id="{{filter.filterName}}" ng-show="filter.filterType == 'input'" ng-model="filterValue" data-val="{{filter.val}}" class="listInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
-
-
-
-			<select  id="{{filter.filterName}}" ng-model="filterValue" ng-show="filter.filterType == 'select'"class="h-rightInput searchDropdown">    
-	  			<option class="select" ng-repeat="option in filter.options"  value="{{option.value}}">{{option.value}}</option>
-				
-			</select>
-
-			
-
-			<input type="button" value="apply" ng-click="addFilter(filterValue, filter.val, this); $event.stopPropagation();" class="listInputButton" /> 
-		</li>
-		
-		
-		</ul>
-	
-
-		
-		  
-
+		<div ng-show="filterType == 'value1'">
 		<div class="h-marginTopBottom"> 
 	  		<label for="containerId">Container Id</label>
 			<input ng-model="containerId" id="containerId" class="h-rightInput" placeholder = "Container Id" type="text"></input>
@@ -73,11 +46,47 @@
 				<option value="003 Baby Care" class="select">003 Baby Care</option>
 			</select>
 		</div>
+	</div>
+
+<div ng-show="filterType == 'value2'">
+	<div class="h-marginTopBottom"> 
+	  		<label for="vendorId">Vendor Id</label>
+			<input ng-model="filterObj.vendorId" id="vendorId" class="h-rightInput" placeholder = "Vendor Id" type="text"></input>
+		</div>	
+
+		<div class="h-marginTopBottom"> 
+	  		<label for="trackingNo">Tracking #</label>
+			<input ng-model="filterObj.trackingNo" id="trackingNo" class="h-rightInput" placeholder = "Tracking #" type="text"></input>
+		</div>
+
+		<div class="h-marginTopBottom"> 
+	  		<label for="trackingLocation">Tracking Loc</label>
+			<input ng-model="filterObj.trackingLocation" id="trackingLocation" class="h-rightInput" placeholder = "Tracking Location" type="text"></input>
+		</div>
+
+		<div class="h-marginTopBottom"> 
+	  		<label for="brand">Brand</label>
+			<input ng-model="filterObj.brand" id="brand" class="h-rightInput" placeholder = "Brand" type="text"></input>
+		</div>
+
+			
+
+		<div class="h-marginTopBottom">
+			<label for="projectStatus">Project Status</label>
+	  		<select id="projectStatus" ng-model="filterObj.projectStatus" class="h-rightInput searchDropdown">    
+	  			<option class="select" value="Select">Select</option>
+				<option value="Complete" class="select">Complete</option>
+				<option value="Incomplete" class="select">Incomplete</option>
+			</select>
+		</div>
+</div>
+
 
   	</div>
   	<div class="cf buttonContainer">
 <button class="btn h-displayInline h-blockButton" ng-click="submitFilters(); $event.stopPropagation();">Submit</button>
 <button class="btn h-displayInline h-blockButton" ng-click="clearFilters(); $event.stopPropagation();">Clear</button>
-  		</ div>
-  </div>
+		</div>
+	</div>
+	<div class="cf"></div>
 </section>
