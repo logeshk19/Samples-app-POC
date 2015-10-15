@@ -192,13 +192,10 @@ a.small {
   display: none;
 }*/
 
-.search input {
+.search input, .search .formgroup input {
   font-family: 'Droid Sans', sans-serif;
-  width: 100%;
-  min-width: 40px;
-  /*padding: 10px 0 10px 15px;*/
-  padding: 0px;
   font-size: 1rem;
+  padding: 2px 5px; 
   color: #475B62;
   background: rgba(255,255,255,0.4);
   border: 1px solid rgba(255,255,255,0.2);
@@ -207,10 +204,16 @@ a.small {
   color: #FDF6E3;
 }
 
+.search input {
+ /* font-family: 'Droid Sans', sans-serif;*/
+  width: 100%;
+  min-width: 40px;
+}
+
 .search .formgroup input {
-  border: 1px solid rgba(0,0,0,0.3);
+  margin-left :80px;
   display: inline;
-  width: auto;
+  width: 52%;
 }
 
 .search label.formgroup {
@@ -220,7 +223,7 @@ a.small {
 
 .search select {
   display: inline;
-  padding: 10px 0 10px 15px;
+  padding: 2px 5px;
   font-size: 1rem;
     color: #FDF6E3;
   background: rgba(255,255,255,0.4);
@@ -502,9 +505,13 @@ input.h-padding {
   width: 30%;
 }
 
+.rightNav {
+  float : right;
+}
+
 .mainContainer{
-  width: 65%;
-  float:left;
+  width: 85%;
+  /*float:left;*/
   margin-left: 20px;
 }
 
@@ -591,7 +598,7 @@ input.h-padding {
 }
 
 
-.artistpage .itemlist .itemDescription{
+.samplepage .itemlist .itemDescription{
   height: 70px;
   overflow: hidden;
   text-overflow: inherit;
