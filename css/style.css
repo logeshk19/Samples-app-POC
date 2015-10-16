@@ -570,9 +570,10 @@ input.h-padding {
   overflow: hidden;
   white-space: nowrap;
   text-overflow:ellipsis;
+  margin-left : 2px;
 }
 
-.search .leftNav .cross {
+.cross {
   position: absolute;
   text-align: center;
   display: inline;
@@ -580,7 +581,7 @@ input.h-padding {
   height: 32px;
   top:5px;
 }
-.search .leftNav .cross:before, .search .leftNav .cross:after {
+.cross:before, .cross:after {
   position: absolute;
    display: inline;
   content: ' ';
@@ -588,10 +589,10 @@ input.h-padding {
   width: 2px;
   background-color: red;
 }
-.search .leftNav .cross:before {
+.cross:before {
   transform: rotate(45deg);
 }
-.search .leftNav .cross:after {
+.cross:after {
   transform: rotate(-45deg);
 }
 
@@ -602,6 +603,10 @@ input.h-padding {
 
 .fontBold{
   font-weight: bold;
+}
+
+.indentMoreFilterResults{
+  margin-left : 4px;
 }
 
 
@@ -619,10 +624,17 @@ input.h-padding {
    font-size: 14px;
   }
 
-.applyFilter{
+.applyFilter, .removeFilter {
   text-decoration: none;
-  /*color : #EEE8D5;*/
+}
+
+.applyFilter{
   color : #009933;
   font-size: 26px;
+}
+
+.removeFilter{
+  color : #FF0000;
+  font-size: 16px;
 }
 

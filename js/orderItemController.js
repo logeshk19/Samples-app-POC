@@ -21,7 +21,7 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
     "val" : "trackingNo"
   },
 	{
-		"filterName" : "Tracking Location",
+		"filterName" : "Tracking Loc",
 		"filterType" : "input",
     "val" : "trackingLocation"
 	},
