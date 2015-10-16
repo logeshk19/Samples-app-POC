@@ -658,12 +658,8 @@ input.h-padding {
 }
 
 .leftNavigation label{
- /* font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;*/
-  /*padding: 5px 20px;
-  position: relative;
-  z-index: 20;
-  display: block;
-  height: 30px;*/
+ display: block;
+ width: 100%;
   cursor: pointer;
   /*color: #777;*/
  /* text-shadow: 1px 1px 1px rgba(255,255,255,0.8);*/
@@ -713,8 +709,16 @@ input.h-padding {
   background-image: url(../images/arrow_up.png);
 }
 
+.formRow {
+  display: flex;
+  flex-direction : row;
+  width: 100%;
+}
 
-
+.formRow input, .formRow select {
+  flex: 1;
+  margin-left: 5px;
+}
 
 
 

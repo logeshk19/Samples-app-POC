@@ -15,31 +15,31 @@
 		<div class="filterContent cf">
 		
 		<div ng-show="filterType == 'value1'">
-		<div class="h-marginTopBottom"> 
+		<div class="h-marginTopBottom formRow"> 
 	  		<label for="containerId">Container Id</label>
-			<input ng-model="containerId" id="containerId" class="h-rightInput" placeholder = "Container Id" type="text"></input>
+			<input ng-model="containerId" id="containerId" placeholder = "Container Id" type="text"></input>
 		</div>	
 
-		<div class="h-marginTopBottom"> 
+		<div class="h-marginTopBottom formRow"> 
 	  		<label for="sampleId">Sample Id</label>
-			<input ng-model="sampleId" id="sampleId" class="h-rightInput" placeholder = "Sample Id" type="text"></input>
+			<input ng-model="sampleId" id="sampleId" placeholder = "Sample Id" type="text"></input>
 		</div>
 
-		<div class="h-marginTopBottom"> 
+		<div class="h-marginTopBottom formRow"> 
 	  		<label for="tcin">TCIN</label>
-			<input ng-model="tcin" id="tcin" class="h-rightInput" placeholder = "TCIN" type="text"></input>
+			<input ng-model="tcin" id="tcin" placeholder = "TCIN" type="text"></input>
 		</div>
 
-		<div class="h-marginTopBottom"> 
+		<div class="h-marginTopBottom formRow"> 
 	  		<label for="dpci">DPCI</label>
-			<input ng-model="dpci" id="dpci" class="h-rightInput" placeholder = "DPCI" type="text"></input>
+			<input ng-model="dpci" id="dpci" placeholder = "DPCI" type="text"></input>
 		</div>
 
 			
 
-		<div class="h-marginTopBottom">
+		<div class="h-marginTopBottom formRow">
 			<label for="dept">Department</label>
-	  		<select id="dept" ng-model="dept" class="h-rightInput searchDropdown">    
+	  		<select id="dept" ng-model="dept" class="searchDropdown">    
 	  			<option class="select" value="Any department">Any department</option>
 				<option value="001 Storage and Organization" class="select">001 Storage and Organization</option>
 				<option value="002 Household Cleaning" class="select">002 Household Cleaning</option>
@@ -49,31 +49,31 @@
 	</div>
 
 <div ng-show="filterType == 'value2'">
-	<div class="h-marginTopBottom"> 
+	<div class="h-marginTopBottom formRow"> 
 	  		<label for="vendorId">Vendor Id</label>
-			<input ng-model="filterObj.vendorId" id="vendorId" class="h-rightInput" placeholder = "Vendor Id" type="text"></input>
+			<input ng-model="filterObj.vendorId" id="vendorId" placeholder = "Vendor Id" type="text"></input>
 		</div>	
 
-		<div class="h-marginTopBottom"> 
+		<div class="h-marginTopBottom formRow"> 
 	  		<label for="trackingNo">Tracking #</label>
-			<input ng-model="filterObj.trackingNo" id="trackingNo" class="h-rightInput" placeholder = "Tracking #" type="text"></input>
+			<input ng-model="filterObj.trackingNo" id="trackingNo"  placeholder = "Tracking #" type="text"></input>
 		</div>
 
-		<div class="h-marginTopBottom"> 
+		<div class="h-marginTopBottom formRow"> 
 	  		<label for="trackingLocation">Tracking Loc</label>
-			<input ng-model="filterObj.trackingLocation" id="trackingLocation" class="h-rightInput" placeholder = "Tracking Location" type="text"></input>
+			<input ng-model="filterObj.trackingLocation" id="trackingLocation"  placeholder = "Tracking Location" type="text"></input>
 		</div>
 
-		<div class="h-marginTopBottom"> 
+		<div class="h-marginTopBottom formRow"> 
 	  		<label for="brand">Brand</label>
-			<input ng-model="filterObj.brand" id="brand" class="h-rightInput" placeholder = "Brand" type="text"></input>
+			<input ng-model="filterObj.brand" id="brand" placeholder = "Brand" type="text"></input>
 		</div>
 
 			
 
-		<div class="h-marginTopBottom">
+		<div class="h-marginTopBottom formRow">
 			<label for="projectStatus">Project Status</label>
-	  		<select id="projectStatus" ng-model="filterObj.projectStatus" class="h-rightInput searchDropdown">    
+	  		<select id="projectStatus" ng-model="filterObj.projectStatus" class="searchDropdown">    
 	  			<option class="select" value="Select">Select</option>
 				<option value="Complete" class="select">Complete</option>
 				<option value="Incomplete" class="select">Incomplete</option>
