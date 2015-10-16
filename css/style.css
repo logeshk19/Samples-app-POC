@@ -211,7 +211,7 @@ a.small {
 }
 
 .search .formgroup input {
-  margin-left :80px;
+  margin-left :70px;
   display: inline;
   width: 52%;
 }
@@ -529,8 +529,15 @@ input.h-padding {
 }
 
 .mainContainer .searchDropdown{
-  font: inherit;
-  padding: 0px;
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 1rem;
+  color: #475B62;
+  background: rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  outline: 0;
+  color: #FDF6E3;
+  padding: 0px 0px 0px 2px;
 }
 
 .mainContainer .select {
@@ -547,9 +554,9 @@ input.h-padding {
 }
 
 .search .mainContainer .listInputButton{
-  max-width: 30%;
+  max-width: 5%;
   min-width : 5%;
-  margin-left: 5px;
+  margin-left: 2px;
 }
 
 .search .mainContainer .orderItemList{
@@ -612,5 +619,10 @@ input.h-padding {
    font-size: 14px;
   }
 
-
+.applyFilter{
+  text-decoration: none;
+  /*color : #EEE8D5;*/
+  color : #009933;
+  font-size: 26px;
+}
 

@@ -1,7 +1,7 @@
 <section class="samplepage">
   <div class="search">
   	<h1>Order Item</h1>
-  		Add filters <span class="formgroup"> <input placeholder="Search for filters" ng-model="searchFilter" type="text"></input> </span>
+  		More filters <span class="formgroup"> <input placeholder="Search for filters" ng-model="searchFilter" type="text"></input> </span>
   	<br/><br/>
   	<div class="mainContainer">
   		<ul ng-show="searchFilter" class="table">
@@ -13,31 +13,18 @@
 
 
 
-			<select  id="{{filter.filterName}}" ng-model="filterValue" ng-show="filter.filterType == 'select'" class="h-rightInput">    
-	  			<option class="select" ng-repeat="option in filter.options"  value="{{option.value}}">{{option.value}}</option>
-				
+			<select  id="{{filter.filterName}}" ng-show="filter.filterType == 'select'" ng-model="filter.options.selectedOption"
+			ng-options = "option.value for option in filter.options.availableOptions track by option.key" class="h-rightInput searchDropdown" ng-style="dropdownBgColor">    
 			</select>
 
 			
 
-			<input type="button" value="apply" ng-click="addFilter(filterValue, filter.val, this); $event.stopPropagation();" class="listInputButton" />
+			<a href="" ng-click="addFilter(filterValue, filter.val, this); $event.stopPropagation();" class="applyFilter"> + </a>
 		</li>
 		
 		
 		</ul>
 	
-
-		<ul>
-  			<li ng-repeat="filter in addedFilters" class="h-relative">
-  				
-  				<span class="elipsisSpan">
-  					<span class="fontBold">{{filter.filterName}}</span> is <span class="fontBold">{{filter.filterValue}}</span></span>
-  				<a href="" ng-click="removeFilter($index); $event.preventDefault();" class="anchorButtons cross"></a> 
-  			
-  			</li>
-  		</ul>
-		  
-
 		<div class="h-marginTopBottom"> 
 	  		<label for="containerId">Container Id</label>
 			<input ng-model="containerId" id="containerId" class="h-rightInput" placeholder = "Container Id" type="text"></input>
@@ -70,6 +57,16 @@
 			</select>
 		</div>
   	</div>
+  	<ul>
+  			<li ng-repeat="filter in addedFilters" class="h-relative">
+  				
+  				<span class="elipsisSpan">
+  					<span class="fontBold">{{filter.filterName}}</span> is <span class="fontBold">{{filter.filterValue}}</span></span>
+  				<a href="" ng-click="removeFilter($index); $event.preventDefault();" class="anchorButtons cross"></a> 
+  			
+  			</li>
+  		</ul>
+		  
   	<div class="cf buttonContainer">
 <button class="btn h-displayInline" ng-click="submitFilters(); $event.stopPropagation();">Submit</button>
 <button class="btn h-displayInline" ng-click="clearFilters(); $event.stopPropagation();">Clear</button>

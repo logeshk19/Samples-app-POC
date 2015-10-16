@@ -8,7 +8,7 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
   $scope.dept = "Any department";
   $scope.addedFilters = [];
   
-
+    $scope.dropdownBgColor = {background : "#69868d"};
 
   	$scope.filterList = [{
 		"filterName" : "Vendor Id",
@@ -33,7 +33,12 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
   {
     "filterName" : "Project Status",
     "filterType" : "select",
-    "options" : [{"key" : "", "value" : "Select"}, {"key" : "", "value" : "Complete"}, {"key" : "", "value" : "Incomplete"}],
+    "options" : {
+      availableOptions : [{"key" : "Select", "value" : "-- Select--"},
+                          {"key" : "Complete", "value" : "Complete"}, 
+                          {"key" : "Incomplete", "value" : "Incomplete"}],
+      selectedOption : {"key" : "Select", "value" : "-- Select--"}
+    },
     "val" : "projectStatus"
   }];
 
