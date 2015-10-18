@@ -7,7 +7,7 @@
   		<ul ng-show="searchFilter" class="table">
 			
 			<li class="h-marginTopBottom" ng-repeat="filter in filterList | searchFilters : searchFilter : this">
-			<a href="" ng-click="addFilter(filterValue, filter.val, this); $event.stopPropagation();" class="applyFilter"> + </a>
+			<a href="" ng-show="filterValue || filter.options.selectedOption.value=='Complete' || filter.options.selectedOption.value=='Incomplete'" ng-click="addFilter(filterValue, filter.options.selectedOption.value, filter.val, this); $event.stopPropagation();" class="applyFilter"> + </a>
 		
 			<label for="{{filter.filterName}}">{{filter.filterName | capitalize}}</label>
 			<input id="{{filter.filterName}}" ng-show="filter.filterType == 'input'" ng-model="filterValue" data-val="{{filter.val}}" class="h-rightInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
@@ -16,6 +16,7 @@
 
 			<select id="{{filter.filterName}}" ng-show="filter.filterType == 'select'" ng-model="filter.options.selectedOption"
 			ng-options = "option.value for option in filter.options.availableOptions track by option.key" class="h-rightInput searchDropdown" ng-style="dropdownBgColor">    
+			</select>   
 			</select>
 			</li>	
 		</ul>

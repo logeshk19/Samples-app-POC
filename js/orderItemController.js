@@ -31,13 +31,13 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
     "val" : "brand"
   },
   {
-    "filterName" : "Project Status",
+   "filterName" : "Project Status",
     "filterType" : "select",
     "options" : {
       availableOptions : [{"key" : "Select", "value" : "-- Select--"},
                           {"key" : "Complete", "value" : "Complete"}, 
                           {"key" : "Incomplete", "value" : "Incomplete"}],
-      selectedOption : {"key" : "Select", "value" : "-- Select--"}
+      selectedOption : {"key" : "Select", "value" : "--Select--"}
     },
     "val" : "projectStatus"
   }];
@@ -51,8 +51,7 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
     $scope.addedFilters.splice(index, 1);
   }
 
-  $scope.addFilter = function(val, key, scope){
-
+  $scope.addFilter = function(val, val1, key, scope){
     var ind = -1;
     var foundFilter = $scope.addedFilters.filter(function(obj, index){
       ind = index;
@@ -60,9 +59,11 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
     })[0];
 
     if(foundFilter){
-      $scope.addedFilters[ind].filterValue = val;
+      if(key == 'projectStatus') $scope.addedFilters[ind].filterValue = val1;
+      else $scope.addedFilters[ind].filterValue = val;
     } else {
-      $scope.addedFilters.push({"filterName" : key, "filterValue" : val});
+      if(key == 'projectStatus') $scope.addedFilters.push({"filterName" : key, "filterValue" : val1});
+      else $scope.addedFilters.push({"filterName" : key, "filterValue" : val});
     }
   }
 

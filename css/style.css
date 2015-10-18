@@ -630,7 +630,8 @@ input.h-padding {
 
 .applyFilter{
   color : #009933;
-  font-size: 26px;
+  font-size: 22px;
+  margin-left: -15px;
 }
 
 .removeFilter{
@@ -638,3 +639,4 @@ input.h-padding {
   font-size: 16px;
 }
 
+.dropdownBgColor {background : "#69868d"}
