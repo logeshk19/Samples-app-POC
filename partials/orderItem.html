@@ -2,16 +2,16 @@
   <div class="search">
   	<h1>Order Item</h1>
   	<div role="alert">
-  		<div class="errorMsg" ng-show="myForm.vendorId.$error.pattern">
-        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Vendor ID must be numeric!</div>
+  		<!-- <div class="errorMsg" ng-show="myForm.vendorId.$error.pattern">
+        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Vendor ID must be numeric!</div> -->
   		<div class="errorMsg" ng-show="myForm.containerVal.$error.pattern">
-        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Container ID must be numeric!</div>
-         <div class="errorMsg" ng-show="myForm.sampleVal.$error.pattern">
-        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Sample ID must be numeric!</div>
+        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Container ID is a single numeric value!</div>
+         <div class="errorMsg" ng-show="myForm.sampleVal.$error.maxlength">
+        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Sample ID has a maxlength of 7!</div>
         <div class="errorMsg" ng-show="myForm.tcinVal.$error.pattern">
-        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;TCIN must be numeric with maxlength of 12!</div>
+        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;TCIN is a numeric value with maxlength of 12!</div>
         <div class="errorMsg" ng-show="myForm.dpciVal.$error.maxlength || myForm.dpciVal.$error.minlength || myForm.dpciVal.$error.pattern">
-        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;DPCI is of the format XXX-XX-XXXX</div>
+        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;DPCI is numeric and of the format XXX-XX-XXXX</div>
       </div>
   		More filters <span class="formgroup"> <input placeholder="Search for filters" ng-model="searchFilter" type="text"></input> </span>
   	<br/><br/>
@@ -26,7 +26,7 @@
 			<input id="{{filter.filterName}}" ng-show="filter.filterType == 'input' && filter.val!='vendorId'" ng-model="filterValue" data-val="{{filter.val}}" class="h-rightInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
 			<input id="{{filter.filterName}}" name="vendorId" ng-show="filter.filterType == 'input' && filter.val=='vendorId'" 
 			ng-model="filterValue" data-val="{{filter.val}}" class="h-rightInput" placeholder = "{{filter.filterName}}" 
-			type="{{filter.filterType}}" ng-pattern="/^[0-9]{1,10}$/"></input>
+			type="{{filter.filterType}}"></input>
 
 
 
@@ -39,12 +39,12 @@
 		<div class="h-marginTopBottom"> 
 	  		<label for="containerId">Container Id</label>
 			<input ng-model="containerId" id="containerId" name="containerVal" class="h-rightInput" placeholder = "Container Id" type="text"
-			ng-pattern="/^\d$/"></input>
+			ng-pattern="/^\d{1}$/"></input>
 		</div>	
 
 		<div class="h-marginTopBottom"> 
 	  		<label for="sampleId">Sample Id</label>
-			<input ng-model="sampleId" id="sampleId" class="h-rightInput" name="sampleVal" placeholder = "Sample Id" type="text" ng-pattern="/^\d$/">
+			<input ng-model="sampleId" id="sampleId" class="h-rightInput" name="sampleVal" placeholder = "Sample Id" type="text" ng-maxlength="7">
 			</input>
 		</div>
 

@@ -1,9 +1,9 @@
-<section class="artistpage">
+<section class="samplepage">
   <div class="search">
     <h1>Order Items</h1>
   </div>
   <ul class="itemlist">
-    <li class="searchItem cf" ng-repeat="item in pocData.resultItems">
+    <li ng-show="pocData.resultItems.length!=0" class="searchItem cf" ng-repeat="item in pocData.resultItems">
       <a>
         <img ng-src="images/{{item.image}}.jpg" alt="Photo of {{item.itemName}}">
         <div class="info">
@@ -23,8 +23,11 @@
         </div>
       </a>
     </li>
+    <li ng-show="pocData.resultItems.length==0">
+    <div> There are no items that match your selection. Please try a different search. </div>
+    </li>
     <li class="cf buttonContainer">
-      <button class="btn h-displayInline h-blockButton" ng-click="placeOrder(); $event.stopPropagation();">Order</button>
+      <button ng-show="pocData.resultItems.length!=0" class="btn h-displayInline h-blockButton" ng-click="placeOrder(); $event.stopPropagation();">Order</button>
 <button class="btn h-displayInline h-blockButton" ng-click="backToFilters(); $event.stopPropagation();">Back</button>
     </li>
   </ul>  

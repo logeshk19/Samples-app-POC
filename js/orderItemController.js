@@ -74,7 +74,6 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
     filterObj[$scope.addedFilters[i].filterName] = $scope.addedFilters[i].filterValue;
   }
 
-
      if($scope.dept != "Any department"){
         filterObj.dept = $scope.dept;
      }
@@ -95,13 +94,10 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
       filterObj.dpci = $scope.dpci;
     }
 
-    
-
   $scope.pocData.resultItems = [];
     $scope.pocData.itemList.filter(function(obj){
       var flag = true;
       for(var key in filterObj){
-
         if(obj[key] ==  undefined){
           flag = flag && true;
         } else if (obj[key].replace("-", "").toLowerCase() ==  filterObj[key].replace("-", "").toLowerCase()){
