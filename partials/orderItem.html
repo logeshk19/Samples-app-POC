@@ -2,8 +2,10 @@
   <div class="search">
   	<h1>Order Item</h1>
   	<div role="alert">
+  		<div class="errorMsg" ng-show="myForm.vendorId.$error.pattern">
+        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Vendor ID must be numeric!</div>
   		<div class="errorMsg" ng-show="myForm.containerVal.$error.pattern">
-        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Container ID must be a numeric!</div>
+        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Container ID must be numeric!</div>
          <div class="errorMsg" ng-show="myForm.sampleVal.$error.pattern">
         <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Sample ID must be numeric!</div>
         <div class="errorMsg" ng-show="myForm.tcinVal.$error.pattern">
@@ -14,13 +16,17 @@
   		More filters <span class="formgroup"> <input placeholder="Search for filters" ng-model="searchFilter" type="text"></input> </span>
   	<br/><br/>
   	<div class="mainContainer">
+  	<form name="myForm">
   		<ul ng-show="searchFilter" class="table">
 			
 			<li class="h-marginTopBottom" ng-repeat="filter in filterList | searchFilters : searchFilter : this">
 			<a href="" ng-show="filterValue || filter.options.selectedOption.value=='Complete' || filter.options.selectedOption.value=='Incomplete'" ng-click="addFilter(filterValue, filter.options.selectedOption.value, filter.val, this); $event.stopPropagation();" class="applyFilter"> + </a>
 		
 			<label for="{{filter.filterName}}">{{filter.filterName | capitalize}}</label>
-			<input id="{{filter.filterName}}" ng-show="filter.filterType == 'input'" ng-model="filterValue" data-val="{{filter.val}}" class="h-rightInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
+			<input id="{{filter.filterName}}" ng-show="filter.filterType == 'input' && filter.val!='vendorId'" ng-model="filterValue" data-val="{{filter.val}}" class="h-rightInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
+			<input id="{{filter.filterName}}" name="vendorId" ng-show="filter.filterType == 'input' && filter.val=='vendorId'" 
+			ng-model="filterValue" data-val="{{filter.val}}" class="h-rightInput" placeholder = "{{filter.filterName}}" 
+			type="{{filter.filterType}}" ng-pattern="/^[0-9]{1,10}$/"></input>
 
 
 
@@ -30,7 +36,6 @@
 			</select>
 			</li>	
 		</ul>
-		<form name="myForm">
 		<div class="h-marginTopBottom"> 
 	  		<label for="containerId">Container Id</label>
 			<input ng-model="containerId" id="containerId" name="containerVal" class="h-rightInput" placeholder = "Container Id" type="text"
