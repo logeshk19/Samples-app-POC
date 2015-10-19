@@ -1,6 +1,16 @@
 <section class="samplepage">
   <div class="search">
   	<h1>Order Item</h1>
+  	<div role="alert">
+  		<div class="errorMsg" ng-show="myForm.containerVal.$error.pattern">
+        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Container ID must be a numeric!</div>
+         <div class="errorMsg" ng-show="myForm.sampleVal.$error.pattern">
+        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Sample ID must be numeric!</div>
+        <div class="errorMsg" ng-show="myForm.tcinVal.$error.pattern">
+        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;TCIN must be numeric with maxlength of 12!</div>
+        <div class="errorMsg" ng-show="myForm.dpciVal.$error.maxlength || myForm.dpciVal.$error.minlength || myForm.dpciVal.$error.pattern">
+        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;DPCI is of the format XXX-XX-XXXX</div>
+      </div>
   		More filters <span class="formgroup"> <input placeholder="Search for filters" ng-model="searchFilter" type="text"></input> </span>
   	<br/><br/>
   	<div class="mainContainer">
@@ -20,26 +30,28 @@
 			</select>
 			</li>	
 		</ul>
-	
+		<form name="myForm">
 		<div class="h-marginTopBottom"> 
 	  		<label for="containerId">Container Id</label>
-			<input ng-model="containerId" id="containerId" class="h-rightInput" placeholder = "Container Id" type="text"></input>
+			<input ng-model="containerId" id="containerId" name="containerVal" class="h-rightInput" placeholder = "Container Id" type="text"
+			ng-pattern="/^\d$/"></input>
 		</div>	
 
 		<div class="h-marginTopBottom"> 
 	  		<label for="sampleId">Sample Id</label>
-			<input ng-model="sampleId" id="sampleId" class="h-rightInput" placeholder = "Sample Id" type="text">
+			<input ng-model="sampleId" id="sampleId" class="h-rightInput" name="sampleVal" placeholder = "Sample Id" type="text" ng-pattern="/^\d$/">
 			</input>
 		</div>
 
 		<div class="h-marginTopBottom"> 
 	  		<label for="tcin" style="text-align:right">TCIN</label>
-			<input ng-model="tcin" id="tcin" class="h-rightInput" placeholder = "TCIN" type="text"></input>
+			<input ng-model="tcin" id="tcin" name="tcinVal" class="h-rightInput" placeholder = "TCIN" type="text"
+				ng-pattern="/^\d{1,12}$/"></input>
 		</div>
 
 		<div class="h-marginTopBottom"> 
 	  		<label for="dpci">DPCI</label>
-			<input ng-model="dpci" id="dpci" class="h-rightInput" placeholder = "DPCI" type="text"></input>
+			<input ng-model="dpci" id="dpci" name="dpciVal" class="h-rightInput" placeholder = "DPCI" type="text" ng-minlength="11" ng-maxlength="11" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/"></input>
 		</div>
 
 			
@@ -63,9 +75,9 @@
   					</span>
   			</li>
   		</ul>
-		  
+		  </form>
   	<div class="cf buttonContainer">
-<button class="btn h-displayInline" ng-click="submitFilters(); $event.stopPropagation();">Submit</button>
+<button class="btn h-displayInline" ng-click="submitFilters(); $event.stopPropagation();" ng-disabled="!myForm.$valid">Submit</button>
 <button class="btn h-displayInline" ng-click="clearFilters(); $event.stopPropagation();">Clear</button>
   </div>
   </div>

@@ -5,7 +5,8 @@
   	<div class="bar">
     	 <input type="text" class="h-padding h-marginBottom" ng-model="searchBuilding" placeholder="Search for building" />
      </div>
-    <div class="errorMsg"> {{ error }} </div>
+    <div ng-show="error" class="errorMsg"><span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp; {{ error }} 
+    </div>
   	<table class="table">
 	<tr>
 		<th>Building 

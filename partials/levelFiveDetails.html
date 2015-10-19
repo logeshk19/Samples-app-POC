@@ -6,7 +6,8 @@
   	<div class="bar">
     	 <input type="text" class="h-padding" ng-model="searchLevel5" placeholder="Search for level" />
      </div>
-     <div class="errorMsg"> {{ error }} </div>
+      <div ng-show="error" class="errorMsg"><span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp; {{ error }} 
+    </div>
   	<table class="table">
 	<tr>
 		<th>Title
