@@ -1,0 +1,23 @@
+<section class="samplepage">
+  <div class="artist cf" ng-model="artists">
+  	<a href="#/itemResults">&laquo; Back</a>
+    <h1>{{itemDetails[0].itemName}}</h1>
+    <div class="info h-margin-top">
+      <!-- <h3>{{artists[whichItem].reknown}}</h3> -->
+      <img ng-src="images/{{itemDetails[0].image}}.jpg" alt="Photo of {{itemDetails[0].itemName}}">
+      <div class="bio">{{itemDetails[0].itemDescription}}</div>
+      <div>
+      	<label class="fontBold">Vendor Id</label> <p style="display: inline;">{{itemDetails[0].vendorId}}</p>
+      </div>
+      <div>
+      	<label class="fontBold">Sample Id</label> <p style="display: inline;">{{itemDetails[0].sampleId}}</p>
+      </div>
+      <div>
+      	<label class="fontBold">Size</label> <p style="display: inline;">{{itemDetails[0].size}}</p>
+      </div>
+      <div>
+      	<label class="fontBold">Tracking Location</label> <p style="display: inline;">{{itemDetails[0].trackingLocation}}</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -4,7 +4,7 @@
   </div>
   <ul class="itemlist">
     <li ng-show="pocData.resultItems.length!=0" class="searchItem cf" ng-repeat="item in pocData.resultItems">
-      <a>
+      <a ng-click="itemClick(item.itemId); $event.preventDefault();">
         <img ng-src="images/{{item.image}}.jpg" alt="Photo of {{item.itemName}}">
         <div class="info">
           <h2>{{item.itemName}}</h2>

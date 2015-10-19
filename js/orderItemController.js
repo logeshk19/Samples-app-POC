@@ -127,12 +127,22 @@ pocControllers.controller('ItemsController', ['$scope', '$http', '$route', '$loc
   $scope.pocData = pocData;
   $scope.pocData.resultItems = pocData.resultItems;
 
+  if($routeParams.itemId != ""  && $routeParams.itemId != undefined){
+    $scope.itemDetails = $scope.pocData.resultItems.filter(function(obj){
+      return obj.itemId == $routeParams.itemId; 
+    });
+  }
+
   $scope.backToFilters = function(){
     $location.path('/orderItem');
   }
 
   $scope.placeOrder = function(){
    $location.path('/orderConfirmation'); 
+  }
+
+  $scope.itemClick = function(itemId){
+     $location.path('/itemDetails/' + itemId);
   }
 
  }]);
