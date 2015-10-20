@@ -4,12 +4,13 @@
   </div>
   <ul class="itemlist">
     <li ng-show="pocData.resultItems.length!=0" class="searchItem cf" ng-repeat="item in pocData.resultItems">
-      <a ng-click="itemClick(item.itemId); $event.preventDefault();">
+      <a ng-click="itemClick(item.itemId); $event.preventDefault();" style="cursor:pointer">
         <img ng-src="images/{{item.image}}.jpg" alt="Photo of {{item.itemName}}">
         <div class="info">
           <h2>{{item.itemName}}</h2>
           <h3 class="itemDescription">{{item.itemDescription}}</h3>
         </div>
+      </a>
         <div class="qty">
           <label>Quantity</label>
           <select>
@@ -21,7 +22,6 @@
             <option value="5">5</option>
           </select>
         </div>
-      </a>
     </li>
     <li ng-show="pocData.resultItems.length==0">
     <div> There are no items that match your selection. Please try a different search. </div>

@@ -1,6 +1,16 @@
 /**************************************** ORDER ITEM CONTROLLER **********************************************************/
 
-pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '$location', '$routeParams', 'pocData',  function($scope, $http, $route, $location, $routeParams, pocData){
+pocControllers.directive("addPattern",function(){
+  return{
+    restrict : 'A',
+    link : function(scope,element,attrs){
+        if(attrs.id=='VendorId'){
+          element.attr("ng-pattern","/^\\d{5}$/");
+        }
+    }
+  }
+})
+.controller('OrderItemController', ['$scope', '$http', '$route', '$location', '$routeParams', 'pocData',  function($scope, $http, $route, $location, $routeParams, pocData){
 	/*$scope.showFilters = false;*/
 
   $scope.pocData = pocData;
@@ -11,7 +21,7 @@ pocControllers.controller('OrderItemController', ['$scope', '$http', '$route', '
     $scope.dropdownBgColor = {background : "#69868d"};
 
   	$scope.filterList = [{
-		"filterName" : "Vendor Id",
+		"filterName" : "VendorId",
 		"filterType" : "input",
     "val" : "vendorId"
 	},

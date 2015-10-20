@@ -2,8 +2,8 @@
   <div class="search">
   	<h1>Order Item</h1>
   	<div role="alert">
-  		<!-- <div class="errorMsg" ng-show="myForm.vendorId.$error.pattern">
-        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Vendor ID must be numeric!</div> -->
+  		<div class="errorMsg" ng-show="myForm.VendorId.$error.pattern">
+        <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Vendor ID is a 5 digit numeric value!</div>
   		<div class="errorMsg" ng-show="myForm.containerVal.$error.pattern">
         <span><img src="images/error.png" height="15" width="15"/></span>&nbsp;&nbsp;Container ID is a single numeric value!</div>
          <div class="errorMsg" ng-show="myForm.sampleVal.$error.maxlength">
@@ -23,12 +23,7 @@
 			<a href="" ng-show="filterValue || filter.options.selectedOption.value=='Complete' || filter.options.selectedOption.value=='Incomplete'" ng-click="addFilter(filterValue, filter.options.selectedOption.value, filter.val, this); $event.stopPropagation();" class="applyFilter"> + </a>
 		
 			<label for="{{filter.filterName}}">{{filter.filterName | capitalize}}</label>
-			<input id="{{filter.filterName}}" ng-show="filter.filterType == 'input' && filter.val!='vendorId'" ng-model="filterValue" data-val="{{filter.val}}" class="h-rightInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}"></input>
-			<input id="{{filter.filterName}}" name="vendorId" ng-show="filter.filterType == 'input' && filter.val=='vendorId'" 
-			ng-model="filterValue" data-val="{{filter.val}}" class="h-rightInput" placeholder = "{{filter.filterName}}" 
-			type="{{filter.filterType}}"></input>
-
-
+			<input id="{{filter.filterName}}" name="{{filter.filterName}}" ng-show="filter.filterType == 'input'" ng-model="filterValue" data-val="{{filter.val}}" class="h-rightInput" placeholder = "{{filter.filterName}}" type="{{filter.filterType}}" add-pattern></input>
 
 			<select id="{{filter.filterName}}" ng-show="filter.filterType == 'select'" ng-model="filter.options.selectedOption"
 			ng-options = "option.value for option in filter.options.availableOptions track by option.key" class="h-rightInput searchDropdown" ng-style="dropdownBgColor">    
