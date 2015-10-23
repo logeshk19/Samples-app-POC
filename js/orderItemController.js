@@ -62,13 +62,14 @@ pocControllers.directive("addPattern",function(){
   }
 
   $scope.addFilter = function(val, val1, key, scope){
+    console.log(val +":"+val1+":"+key);
     var ind = -1;
-    var foundFilter = $scope.addedFilters.filter(function(obj, index){
+    var foundFilter = $scope.addedFilters.every(function(obj, index){
       ind = index;
-      return obj.filterName == key;
-    })[0];
-
-    if(foundFilter){
+      return obj.filterName != key;
+    });
+    console.log("ret val : " + foundFilter);
+    if(!foundFilter){
       if(key == 'projectStatus') $scope.addedFilters[ind].filterValue = val1;
       else $scope.addedFilters[ind].filterValue = val;
     } else {
